@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+"""Count words in markdown text read from stdin.
+
+Strips common markdown noise (fenced/inline code, link URLs, emphasis
+markers, header hashes) before counting whitespace-delimited tokens.
+Hyphenated words ("well-known") and contractions ("don't") count as one.
+
+Usage:
+    cat draft.md | count-words
+    count-words <<'EOF'
+    The full text of the post here.
+    EOF
+
+Output: a single integer on stdout.
+"""
+import re
+import sys
+
+text = sys.stdin.read()
+
+# Remove fenced code blocks (``` ... ```)
+text = re.sub(r"```.*?```", " ", text, flags=re.DOTALL)
+# Remove inline code (`code`)
+text = re.sub(r"`[^`]+`", " ", text)
+# Markdown links: keep visible text, drop URL
+text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
+# Strip leading header hashes (## Foo -> Foo)
+text = re.sub(r"^\s*#{1,6}\s+", "", text, flags=re.MULTILINE)
+# Strip emphasis markers (* _ ~)
+text = re.sub(r"[*_~]+", "", text)
+
+# Only count tokens that contain at least one alphanumeric character;
+# this excludes stray punctuation left behind after stripping markdown.
+print(sum(1 for tok in text.split() if any(c.isalnum() for c in tok)))

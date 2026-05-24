@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Medium Post"
+  short_description: "Draft Medium-ready articles from raw material."
+  default_prompt: "Use $create-medium-post to create a Medium-ready article from my notes."

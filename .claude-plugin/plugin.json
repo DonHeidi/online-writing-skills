@@ -1,0 +1,8 @@
+{
+  "name": "online-writing",
+  "description": "A suite of skills for online writing based on 'The Art and Business of Online Writing.' Covers the full pipeline: discovering your writing purpose, content buckets, and voice tonality (English) or stil (German), ideating and exploring post topics, structuring short-form posts (800–1,200 words) and long-form drafts (2,500–3,000 words) in English or German, improving existing drafts, running structural diagnostics, rating content quality (VPM, dimensions, goals), distilling long-form into platform micro-posts, extracting German briefs from any-language raw material as the planning artefact for German writing, generating single-paragraph article abstracts, and producing Midjourney prompts for companion imagery.",
+  "version": "2.8.0",
+  "author": {
+    "name": "Sebastian Heitmann"
+  }
+}

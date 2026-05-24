@@ -1,0 +1,43 @@
+{
+  "name": "online-writing",
+  "version": "2.7.3",
+  "description": "A suite of skills for online writing based on 'The Art and Business of Online Writing.' Covers the full pipeline: discovering your writing purpose, content buckets, and voice tonality, ideating and exploring post topics, structuring short-form posts (800-1,200 words), Medium-ready articles, and long-form drafts (2,500-3,000 words), improving existing drafts, running structural diagnostics, rating content quality (VPM, dimensions, goals), distilling long-form into platform micro-posts, generating single-paragraph article abstracts, and producing Midjourney prompts for companion imagery.",
+  "author": {
+    "name": "Sebastian Heitmann",
+    "url": "https://github.com/DonHeidi"
+  },
+  "homepage": "https://github.com/DonHeidi/notes",
+  "repository": "https://github.com/DonHeidi/notes",
+  "license": "UNLICENSED",
+  "keywords": [
+    "writing",
+    "editing",
+    "content",
+    "obsidian",
+    "publishing"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Online Writing",
+    "shortDescription": "Writing skills for ideation, drafting, and editing",
+    "longDescription": "A bundled set of writing skills for purpose discovery, ideation, drafting, rewriting, diagnostics, scoring, and repurposing posts.",
+    "developerName": "Sebastian Heitmann",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/DonHeidi/notes",
+    "privacyPolicyURL": "https://github.com/DonHeidi/notes",
+    "termsOfServiceURL": "https://github.com/DonHeidi/notes",
+    "defaultPrompt": [
+      "Help me find sharper angles for my next post.",
+      "Turn these notes into a publishable article draft.",
+      "Diagnose why this draft still feels weak."
+    ],
+    "brandColor": "#B45309",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/icon.svg",
+    "screenshots": []
+  }
+}
