@@ -1,0 +1,130 @@
+@startuml onboarding-flow
+title Online Writing Skills — Onboarding Flow
+
+skinparam shadowing false
+skinparam ArrowColor #444444
+skinparam defaultTextAlignment center
+skinparam activity {
+  BackgroundColor #FFFFFF
+  BorderColor #444444
+  DiamondBackgroundColor #FFF7E6
+  DiamondBorderColor #C9971C
+}
+legend right
+  <b>Legend</b>
+  --
+  () skill      — runnable agent skill
+  [#LightBlue] — config artifact in <vault>/.online-writing/
+  --
+  Discovery is order-flexible. Each skill works standalone:
+  if an input config is missing, the skill proceeds without it.
+endlegend
+
+|#F5F7FA|Project setup|
+start
+:Create / choose a writing project folder
+(one folder per writing context);
+:Make the skills available to the agent
+(clone, marketplace, or plugin source);
+:Start the agent from the project folder;
+:Ask the agent to set up the
+online-writing configuration;
+note right
+  Creates <vault>/.online-writing/
+  on first write — no manual file
+  editing required.
+end note
+
+|#EEF6EE|Discovery — build the foundation|
+
+partition "(discover-purpose)" {
+  :Interview: motivation, audience, category,
+  POV, style, vision;
+  :Synthesize Purpose Statement
+  + Decision Filter;
+}
+#LightBlue:purpose.md;
+
+partition "(discover-buckets)" {
+  note right
+    Reads purpose.md if present
+    (genius zone should align
+    with purpose) — optional.
+  end note
+  :List 10–20 expert zones (breadth first);
+  :Pick the One Big Key Zone;
+  :Overlap with 2–3 secondary zones
+  → find the Genius Zone;
+  :Translate genius zone into 3 content buckets
+  (General / Niche / Industry);
+  :Stress-test: alignment, sustainability,
+  specificity, energy;
+}
+#LightBlue:expertise.md
+(all zones, key zone, genius zone);
+#LightBlue:buckets.md
+(buckets + territory statement);
+
+if (Writing language?) then (English)
+  partition "(discover-tonality)" {
+    note right
+      Reads purpose.md + buckets.md
+      to ground examples — optional.
+      Loads references/tonality-guide.md
+      for the universal register baseline.
+    end note
+    :Interview across 6 voice dimensions
+    (preferences, comparisons, rewrites);
+    :Register check by writing type;
+    :Collect 8–10 reference samples;
+    :Draft & confirm voice profile;
+  }
+  #LightBlue:tonality.md
+  (agent drafting guidance, EN);
+else (German)
+  partition "(finde-stil)" {
+    note right
+      Independent German parallel —
+      does NOT read tonality.md.
+      Reads purpose.md + buckets.md
+      (optional). Loads stil-guide.md.
+    end note
+    :Interview in German across voice
+    + German-specific dimensions;
+    :Collect German reference samples;
+    :Draft & confirm style profile;
+  }
+  #LightBlue:stil.md
+  (agent drafting guidance, DE);
+endif
+
+|#FBF1F1|Foundation ready|
+:Foundation established;
+note right
+  settings.md is created lazily by any
+  skill on first use when a needed
+  preference is missing.
+end note
+
+|#F5F7FA|Production — consume the foundation|
+fork
+  :(ideate) — find & tag post ideas;
+fork again
+  :(create-post) / (create-draft) /
+  (create-medium-post) — draft;
+fork again
+  :(improve-writing) / (rewrite-de) — revise;
+fork again
+  :(diagnose) / (rate) — evaluate;
+fork again
+  :(distill) / (tldr) — repurpose long-form;
+end fork
+note right
+  Production skills read whatever config
+  exists: purpose, expertise, buckets,
+  tonality / stil. Missing files are
+  skipped, never block.
+end note
+
+stop
+@enduml
