@@ -91,14 +91,70 @@ There are several ways to use the collection today:
 2. **Clone the repository.** This is the simplest option if you want to keep the collection up to date with Git:
 
    ```sh
+   mkdir -p ~/skills
+   cd ~/skills
    git clone https://github.com/DonHeidi/online-writing-skills.git
    ```
 
-3. **Add it through a local marketplace or plugin source.** If your agent supports local marketplaces, local plugin folders, or skill package sources, point it at the cloned repository instead of copying individual files. This keeps the skill collection separate from your writing projects and makes updates easier: pull the latest repository changes, then let the agent reload or refresh the local skill source according to its own marketplace/plugin workflow. For concrete setup mechanics, refer to your agent's own documentation; Claude Code's plugin and skill documentation (https://code.claude.com/docs/en/plugins and https://code.claude.com/docs/en/skills) and the Codex documentation (https://github.com/openai/codex) are useful examples.
+   Later updates are ordinary Git updates:
 
-The exact installation step depends on the agent environment. The important thing is that the agent can see the `skills/`, `references/`, `CONFIG.md`, and plugin metadata files in this repository.
+   ```sh
+   cd ~/skills/online-writing-skills
+   git pull
+   ```
+
+3. **Add it through a local marketplace or plugin source.** If your agent supports local marketplaces, local plugin folders, or skill package sources, point it at the cloned repository instead of copying individual files. This keeps the skill collection separate from your writing projects and makes updates easier: pull the latest repository changes, then let the agent reload or refresh the local skill source according to its own marketplace/plugin workflow.
+
+#### Claude Code example
+
+Claude Code supports plugin marketplaces. The exact UI can change, so the canonical reference is the Claude Code documentation for discovering plugins and marketplaces: https://code.claude.com/docs/en/discover-plugins.md
+
+A local setup typically looks like this:
+
+```sh
+mkdir -p ~/skills
+cd ~/skills
+git clone https://github.com/DonHeidi/online-writing-skills.git
+```
+
+Then start Claude Code and add the cloned repository as a marketplace from inside Claude Code:
+
+```text
+/plugin marketplace add ~/skills/online-writing-skills
+```
+
+You can also add the GitHub repository directly, if you prefer Claude Code to manage the marketplace clone:
+
+```text
+/plugin marketplace add DonHeidi/online-writing-skills
+```
+
+After adding the marketplace, use Claude Code's plugin manager to inspect and install the available plugin or skills:
+
+```text
+/plugin
+```
+
+Or use the direct install command shape from the Claude Code docs after checking the marketplace and plugin names:
+
+```text
+/plugin install plugin-name@marketplace-name
+```
+
+If you update the cloned repository later, refresh the marketplace or reload plugins in Claude Code:
+
+```text
+/plugin marketplace update marketplace-name
+/reload-plugins
+```
+
+The important thing is that the agent can see the `skills/`, `references/`, `CONFIG.md`, and plugin metadata files in this repository.
 
 ### Set up a writing project
+
+The onboarding flow moves from project setup through the discovery skills (which build the durable foundation) into the production skills that consume it:
+
+![Onboarding flow](docs/onboarding-flow.svg)
 
 A typical first project setup looks like this:
 
@@ -107,9 +163,26 @@ A typical first project setup looks like this:
 3. Start your agent from the project folder, or tell it explicitly which folder is the writing project.
 4. Ask the agent to set up the online-writing configuration for this project.
 5. Use the discovery skills to establish the foundation:
-   - `discover-purpose` — define why you write, who you write for, and what decisions future content should pass.
-   - `discover-buckets` — map your expertise into content buckets and topic territory.
-   - `discover-tonality` — build an English voice profile from examples and preferences.
+   - `discover-purpose` — define why you write, who you write for, and what decisions future content should pass. It's an interview, not a form, that moves through four phases:
+     1. The Opening — start broad and in life terms ("why are you thinking about writing online right now?") to surface the underlying motivation
+     2. Following the Thread — explore whichever of the six dimensions are most alive: motivation, audience, category, point of view, style (educating vs. entertaining), and vision
+     3. Surfacing the Purpose — after a few exchanges, reflect back a draft purpose statement synthesizing motivation → audience → category → POV → vision
+     4. Sharpening — iterate on the draft until it feels like the user's own, not the agent's
+
+     The result is saved to `purpose.md`: the labeled dimensions, a natural-language Purpose Statement, and a Decision Filter (five yes/no questions) used to evaluate future writing choices.
+   - `discover-buckets` — map your expertise into content buckets and topic territory. The interview moves through five steps:
+     1. Map expert zones — list 10–20 things you know a lot about (breadth first)
+     2. Find the One Big Key Zone — the center of gravity everything connects back to
+     3. Find the Genius Zone — overlap the key zone with 2–3 secondary zones to get the unique intersection ("where you have an unfair advantage")
+     4. Translate to content buckets — General / Niche / Industry
+     5. Stress-test — alignment, sustainability, specificity, energy
+   - `discover-tonality` — build an English voice profile from examples and preferences. It weaves three techniques (preference questions, comparisons, and rewrite prompts) across these stages:
+     1. Setup — start fresh or refine an existing profile, and load `purpose.md` / `buckets.md` so examples are drawn from the user's actual domain
+     2. Interview — extract per-user values across six voice dimensions: Commitment, Reasoning Style, Reader Relationship, Emotional Register, Density, and agent-specific failure modes (the patterns the agent should resist)
+     3. Register check — a lightweight pass on how the voice shifts by piece type (descriptive, argumentative, instructional, referential)
+     4. Synthesis — present a draft profile in conversation and iterate until the user confirms it sounds like them
+
+     The result is saved to `tonality.md`: a voice summary, the dimension profiles, agent-specific failure modes, register tendencies, format rules, and 8–10 reference samples taken from the user's own rewrites. It's drafting guidance the content skills load to match the user's voice, not a style guide for human editing.
    - `finde-stil` — build a German style profile when the project writes in German.
 6. Once the foundation exists, use the production skills for ideation, drafting, rewriting, diagnosis, rating, and repurposing.
 
