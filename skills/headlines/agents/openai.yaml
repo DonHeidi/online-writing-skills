@@ -1,0 +1,4 @@
+interface:
+  display_name: "Headlines"
+  short_description: "Generate and rank headline variants."
+  default_prompt: "Use $headlines to create stronger headline options for this piece."

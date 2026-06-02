@@ -1,0 +1,4 @@
+interface:
+  display_name: "Discover Tonality"
+  short_description: "Define an English writing voice profile."
+  default_prompt: "Use $discover-tonality to help me define my writing voice."

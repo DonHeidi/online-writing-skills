@@ -28,8 +28,8 @@
       "Write"
     ],
     "websiteURL": "https://github.com/DonHeidi/online-writing-skills",
-    "privacyPolicyURL": "https://github.com/DonHeidi/online-writing-skills",
-    "termsOfServiceURL": "https://github.com/DonHeidi/online-writing-skills",
+    "privacyPolicyURL": "https://github.com/DonHeidi/online-writing-skills/blob/main/docs/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/DonHeidi/online-writing-skills/blob/main/docs/TERMS.md",
     "defaultPrompt": [
       "Help me find sharper angles for my next post.",
       "Turn these notes into a publishable article draft.",

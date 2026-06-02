@@ -1,0 +1,4 @@
+interface:
+  display_name: "Discover Buckets"
+  short_description: "Map expertise into content buckets."
+  default_prompt: "Use $discover-buckets to help me define my content buckets."

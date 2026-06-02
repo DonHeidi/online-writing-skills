@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rewrite DE"
+  short_description: "Rewrite English articles as native German prose."
+  default_prompt: "Use $rewrite-de to turn this English article into a native German version."

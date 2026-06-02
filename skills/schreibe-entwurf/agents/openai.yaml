@@ -1,0 +1,4 @@
+interface:
+  display_name: "Schreibe Entwurf"
+  short_description: "Draft long-form German articles from German briefs."
+  default_prompt: "Use $schreibe-entwurf to write a German long-form article from this brief."

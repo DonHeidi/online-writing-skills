@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Post"
+  short_description: "Draft short-form online posts from raw notes."
+  default_prompt: "Use $create-post to turn my raw material into a publishable short-form post."

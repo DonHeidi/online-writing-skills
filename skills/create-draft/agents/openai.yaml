@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Draft"
+  short_description: "Draft long-form articles from raw material."
+  default_prompt: "Use $create-draft to turn my notes into a long-form article draft."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ideate"
+  short_description: "Generate sharp online-writing post ideas."
+  default_prompt: "Use $ideate to find publishable angles for this topic."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analysiere Quelle"
+  short_description: "Extract German article briefs from raw source material."
+  default_prompt: "Use $analysiere-quelle to turn this source material into a German writing brief."

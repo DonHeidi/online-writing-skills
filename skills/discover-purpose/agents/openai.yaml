@@ -1,0 +1,4 @@
+interface:
+  display_name: "Discover Purpose"
+  short_description: "Clarify writing purpose, audience, and point of view."
+  default_prompt: "Use $discover-purpose to help me define why I write online and who it is for."

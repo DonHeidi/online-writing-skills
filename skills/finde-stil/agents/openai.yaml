@@ -1,0 +1,4 @@
+interface:
+  display_name: "Finde Stil"
+  short_description: "Define a German writing voice profile."
+  default_prompt: "Use $finde-stil to help me define my German writing style."

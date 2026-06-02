@@ -1,0 +1,4 @@
+interface:
+  display_name: "Illustrate"
+  short_description: "Create Midjourney prompts for article imagery."
+  default_prompt: "Use $illustrate to create image prompts for this finished piece."

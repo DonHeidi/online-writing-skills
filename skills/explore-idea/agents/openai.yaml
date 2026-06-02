@@ -1,0 +1,4 @@
+interface:
+  display_name: "Explore Idea"
+  short_description: "Develop one writing idea before drafting."
+  default_prompt: "Use $explore-idea to help me deepen this writing idea before drafting."

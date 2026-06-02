@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rate"
+  short_description: "Score writing quality and strategic fit."
+  default_prompt: "Use $rate to assess whether this piece is ready to publish."

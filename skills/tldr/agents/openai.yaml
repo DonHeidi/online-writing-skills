@@ -1,0 +1,4 @@
+interface:
+  display_name: "TLDR"
+  short_description: "Write a concise abstract for a long-form article."
+  default_prompt: "Use $tldr to write an abstract for this article."

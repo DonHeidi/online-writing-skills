@@ -1,0 +1,4 @@
+interface:
+  display_name: "Distill"
+  short_description: "Repurpose long-form pieces into short social posts."
+  default_prompt: "Use $distill to turn this article into platform-native short posts."

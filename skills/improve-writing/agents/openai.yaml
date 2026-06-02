@@ -1,0 +1,4 @@
+interface:
+  display_name: "Improve Writing"
+  short_description: "Refine and strengthen an existing draft."
+  default_prompt: "Use $improve-writing to tighten and improve this draft."

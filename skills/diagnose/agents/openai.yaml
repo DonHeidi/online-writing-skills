@@ -1,0 +1,4 @@
+interface:
+  display_name: "Diagnose"
+  short_description: "Find structural issues in a written piece."
+  default_prompt: "Use $diagnose to identify what is weak in this draft."
