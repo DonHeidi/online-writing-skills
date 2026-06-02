@@ -150,6 +150,26 @@ If you update the cloned repository later, refresh the marketplace or reload plu
 
 The important thing is that the agent can see the `skills/`, `references/`, `CONFIG.md`, and plugin metadata files in this repository.
 
+#### OpenAI Codex example
+
+Codex CLI also supports skills and plugins. This repository ships a Codex plugin manifest at `.codex-plugin/plugin.json` and a repo-scoped marketplace manifest at `.agents/plugins/marketplace.json`, both pointing at the same shared `skills/` directory used by Claude Code.
+
+Clone the repository, then add it as a marketplace and install the plugin from inside Codex:
+
+```sh
+mkdir -p ~/skills
+cd ~/skills
+git clone https://github.com/DonHeidi/online-writing-skills.git
+```
+
+```text
+/plugins
+```
+
+The `/plugins` command lets you browse and install plugins from configured marketplaces. Because the marketplace manifest lives at `.agents/plugins/marketplace.json`, cloning or opening the repository makes the plugin discoverable as a repo-scoped marketplace.
+
+Alternatively, Codex discovers skills directly from `.agents/skills/` (repo) or `~/.agents/skills/` (personal). You can symlink or copy the `skills/` directory into one of those locations if you prefer skill-level discovery without installing the full plugin. The canonical reference is the Codex skills documentation: https://developers.openai.com/codex/skills
+
 ### Set up a writing project
 
 The onboarding flow moves from project setup through the discovery skills (which build the durable foundation) into the production skills that consume it:

@@ -1,0 +1,19 @@
+{
+  "name": "online-writing-marketplace",
+  "interface": {
+    "displayName": "Online Writing"
+  },
+  "plugins": [
+    {
+      "name": "online-writing",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
