@@ -226,3 +226,7 @@ Current work focuses on making the collection easier to distribute, better groun
 - SEO: add support for making texts more search-friendly. The current workflows are written primarily for human readers, and probably AI readers, so SEO is not yet part of the skill set.
 - English prose examples: work through *The Elements of Style* by Strunk and White and incorporate further examples of clear, effective English writing.
 - Workflow completeness: keep connecting individual capabilities into a coherent system rather than a set of isolated prompts.
+
+## License
+
+Released under the [MIT License](LICENSE). The skills draw on concepts from external sources (see *Sources and influences*); the MIT license covers this repository's own skill definitions, references, and scripts, not the underlying works it is inspired by.
