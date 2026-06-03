@@ -25,8 +25,8 @@ voices and strategies without mixing them. See [Configuration](/online-writing-s
 2. Make the skills available to your agent — see [Installation](/online-writing-skills/guides/installation/).
 3. Start your agent from the project folder, or tell it explicitly which folder is the project.
 4. Ask the agent to set up the online-writing configuration for this project.
-5. Run **[Phase 1 · Discovery](/online-writing-skills/guides/discovery/)** to establish the foundation.
-6. Move on to **[Production](/online-writing-skills/guides/production/)** and
+5. Run **[Discovery](/online-writing-skills/guides/discovery/)** to establish the foundation.
+6. Use **[Production](/online-writing-skills/guides/production/)** and
    **[Review](/online-writing-skills/guides/review/)** to draft, refine, rate, and repurpose.
 
 A good first prompt:
@@ -36,24 +36,26 @@ I want to set up this folder as an online writing project. Please guide me throu
 initial setup: purpose, content buckets, and voice/tonality.
 ```
 
-## The workflow, in three phases
+## The workflow
 
-The skills are organised around a three-phase workflow. Each phase has its own guide:
+The skills are organised around three areas of work, each with its own guide. Start with **Discovery**
+— it's the foundation everything else reads — but **Production** and **Review** are areas you move
+between and revisit as you write, not one-way steps:
 
-1. **[Discovery](/online-writing-skills/guides/discovery/)** — establish the durable foundation:
-   *why* you write (`purpose.md`), *what* you own (`buckets.md`), and *how* your voice sounds
-   (`tonality.md`). This is a prerequisite for good output, not an optional extra.
-2. **[Production](/online-writing-skills/guides/production/)** — find the idea (`ideate`,
-   `explore-idea`) and shape it into a draft (`create-post`, `create-draft`, `create-medium-post`,
-   `headlines`).
-3. **[Review](/online-writing-skills/guides/review/)** — make the draft stronger (`diagnose`,
-   `improve-writing`, `rate`) and stretch it further (`tldr`, `distill`, `illustrate`).
+- **[Discovery](/online-writing-skills/guides/discovery/)** — establish the durable foundation:
+  *why* you write (`purpose.md`), *what* you own (`buckets.md`), and *how* your voice sounds
+  (`tonality.md`). This is a prerequisite for good output, not an optional extra.
+- **[Production](/online-writing-skills/guides/production/)** — find the idea (`ideate`,
+  `explore-idea`) and shape it into a draft (`create-post`, `create-draft`, `create-medium-post`,
+  `headlines`).
+- **[Review](/online-writing-skills/guides/review/)** — make a draft stronger (`diagnose`,
+  `improve-writing`, `rate`) and stretch it further (`tldr`, `distill`, `illustrate`). You can review
+  any piece, including one you didn't write here.
 
 :::caution[Start with Discovery]
 The production skills work without configuration, but without purpose, content buckets, and especially
 voice, they fall back to generic, sales-y defaults. A few discovery interviews up front pay off across
-every post you write afterward — so run [Phase 1 · Discovery](/online-writing-skills/guides/discovery/)
-first.
+every post you write afterward — so run [Discovery](/online-writing-skills/guides/discovery/) first.
 :::
 
 After the foundation exists, prompts can be direct:

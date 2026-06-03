@@ -1,14 +1,13 @@
 ---
-title: "Phase 2 · Production"
+title: Production
 description: Turn a topic or a pile of notes into a structured, publishable draft — ideation through drafting.
 ---
 
 Production is where the foundation pays off. With `purpose.md`, `buckets.md`, and `tonality.md` in
-place (see **[Phase 1 · Discovery](/online-writing-skills/guides/discovery/)**), the production skills
-align ideas to your purpose, draw examples from your buckets, and match your voice — instead of
-guessing.
+place (see **[Discovery](/online-writing-skills/guides/discovery/)**), the production skills align
+ideas to your purpose, draw examples from your buckets, and match your voice — instead of guessing.
 
-Production has two sub-phases: **find the idea**, then **shape the draft**.
+Production has two parts: **find the idea**, then **shape the draft**.
 
 ## Find the idea
 
@@ -62,8 +61,8 @@ The German pipeline has its own production path: extract a brief with `analysier
 with `schreibe-entwurf`; or transfer an existing English article with `rewrite-de`. See the
 [German Workflow](/online-writing-skills/skills/german/).
 
-## Hand-off
+## Next
 
-A finished draft goes to **[Phase 3 · Review](/online-writing-skills/guides/review/)** — diagnose its
+A finished draft is ready for **[Review](/online-writing-skills/guides/review/)** — diagnose its
 structure, rate its quality, tighten it, and repurpose it. For the per-skill reference, see
 [Ideation & Drafting](/online-writing-skills/skills/ideation-drafting/).

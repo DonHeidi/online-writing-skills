@@ -1,11 +1,11 @@
 ---
-title: "Phase 3 · Review"
+title: Review
 description: Make a finished draft stronger and stretch it further — refine, score, abstract, repurpose, illustrate.
 ---
 
-Once a draft exists (see **[Phase 2 · Production](/online-writing-skills/guides/production/)**), the
-review phase makes it stronger and then stretches it further. Two movements: **refine** the piece you
-have, then **repurpose** it into more.
+Once a draft exists (see **[Production](/online-writing-skills/guides/production/)**), review makes it
+stronger and then stretches it further. Two movements: **refine** the piece you have, then
+**repurpose** it into more.
 
 ## Refine
 

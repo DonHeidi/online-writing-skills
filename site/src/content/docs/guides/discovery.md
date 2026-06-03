@@ -1,5 +1,5 @@
 ---
-title: "Phase 1 · Discovery"
+title: Discovery
 description: Establish the durable foundation — purpose, content buckets, and voice — that every other skill reads.
 ---
 
@@ -79,6 +79,6 @@ You have a populated `purpose.md`, `buckets.md`, and `tonality.md` (or `stil.md`
 recognise as yours. They're **re-runnable** — revisit any of them later to refine the foundation as
 your writing evolves.
 
-With the foundation in place, move on to **[Phase 2 · Production](/online-writing-skills/guides/production/)**.
-For the full phase-by-phase breakdown of each interview, see the
+With the foundation in place, move on to **[Production](/online-writing-skills/guides/production/)**.
+For the full step-by-step breakdown of each interview, see the
 [Discovery reference](/online-writing-skills/skills/discovery/).
