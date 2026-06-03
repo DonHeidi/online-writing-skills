@@ -251,6 +251,7 @@ detail):
 - **No SEO.** The workflows target human (and AI) readers, not search ranking.
 - **Imagery is Midjourney-only**, and the end-to-end image workflow is only partially built.
 - **Output is non-deterministic.** `rate` and `diagnose` are guidance, not ground truth — always review before publishing.
+- **Token-intensive.** Loading references, config, and voice samples, running multi-turn interviews, and producing long drafts means meaningfully higher token usage (and cost/latency on metered runtimes) than a one-shot prompt.
 - **You maintain the configuration**, which lives outside this repository in each project's `.online-writing/` folder.
 
 Several of these are tracked in the Roadmap below. See also the **Disclaimer** at the top of this README.

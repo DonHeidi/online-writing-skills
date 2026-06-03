@@ -68,6 +68,15 @@ varies with the model and runtime you use. The evaluation skills
 reflect the frameworks' judgement, not an objective ground truth. Always review output before
 publishing.
 
+## It is token-intensive
+
+This is not a lightweight workflow. The skills load reference guides, your configuration, and your
+voice samples into context; the discovery skills run multi-turn interviews; and the drafting skills
+produce long outputs (up to 2,500–3,000 words) often across several iterations. Expect meaningfully
+higher token usage — and, on metered runtimes, higher cost and slower turns — than a single one-shot
+prompt. Treat it as a deliberate trade: more context and structure in exchange for output that
+actually sounds like you.
+
 ## You maintain the configuration
 
 The writer-specific configuration lives **outside** this repository, in each project's
