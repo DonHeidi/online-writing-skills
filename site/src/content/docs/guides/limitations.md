@@ -6,12 +6,13 @@ description: What this collection is not, and the constraints to be aware of bef
 This collection is deliberately opinionated and useful within a specific scope. Being clear about
 where it stops is part of using it well.
 
-## It needs project context to be good
+## It depends on your project context — by design
 
-The single biggest limitation: without [discovery](/online-writing-skills/guides/discovery/)
+This is a deliberate design choice, not a defect: the skills are built to write in *your* voice, so
+they need context to do it. Without [discovery](/online-writing-skills/guides/discovery/)
 (`purpose.md`, `buckets.md`, and especially `tonality.md`), the production skills fall back to safe,
-generic defaults and drift toward a sales-y, everyone's-voice register. The skills work without
-configuration, but they are not designed to produce *your* voice from nothing. Treat the
+generic defaults and drift toward a sales-y, everyone's-voice register. They work without
+configuration, but they are not meant to produce *your* voice from nothing. Treat the
 [discovery setup](/online-writing-skills/guides/getting-started/) as a prerequisite, not an optional
 extra.
 
@@ -22,11 +23,12 @@ particular school of social-first online writing. They encode real opinions abou
 and voice. If your conventions differ (academic writing, long-form journalism, technical reference
 docs), expect friction — the skills will nudge you toward their house style.
 
-## English-first; partial German support
+## American English first; experimental German support
 
-The collection is English-first and biased toward **American English** conventions. German support is
-a smaller, intentionally scoped subset — source analysis (`analysiere-quelle`), long-form drafting
-(`schreibe-entwurf`), EN→DE rewriting (`rewrite-de`), and style (`finde-stil`).
+The collection is **American English first** — most skills, guides, and examples assume American
+English conventions. German support is **experimental**: a smaller, intentionally scoped subset —
+source analysis (`analysiere-quelle`), long-form drafting (`schreibe-entwurf`), EN→DE rewriting
+(`rewrite-de`), and style (`finde-stil`).
 
 The German pipeline has **known gaps**: short-form German drafting (`schreibe-post`) and German
 micro-post distillation (`destilliere`) are referenced as future skills and **do not exist yet**. See
@@ -40,17 +42,22 @@ what matters, choose the point of view, supply the raw material, and take respon
 result. Hand the skills an empty prompt and you get generic output; hand them real ideas and they help
 you shape them.
 
-## No SEO optimisation
+Producing something good is also **iterative**: expect to move between the discovery, drafting, and
+review skills more than once, refining input and output as you go. This is not a
+press-one-button-get-a-finished-piece tool.
+
+## No SEO optimization
 
 The workflows are written for human readers (and, incidentally, AI readers). There is currently **no
-support for search-engine optimisation** — keyword targeting, meta structuring, or SERP-oriented
+support for search-engine optimization** — keyword targeting, meta structuring, or SERP-oriented
 formatting. If you need SEO, you will have to layer it on yourself.
 
-## Imagery is Midjourney-only
+## Imagery is Midjourney-only (experimental)
 
-The [`illustrate`](/online-writing-skills/skills/illustrate/) skill produces **Midjourney
-prompts** only. It does not target other image generators, search stock photography, or edit existing
-images, and the end-to-end image workflow (submission, asset capture, wiring) is only partially built.
+The [`illustrate`](/online-writing-skills/skills/illustrate/) skill is **experimental** and produces
+**Midjourney prompts** only. It does not target other image generators, search stock photography, or
+edit existing images, and the end-to-end image workflow (submission, asset capture, wiring) is only
+partially built.
 
 ## Source material handling is evolving
 
@@ -65,8 +72,9 @@ These are LLM-driven skills. The same input can produce different output across 
 varies with the model and runtime you use. The evaluation skills
 ([`rate`](/online-writing-skills/skills/rate/),
 [`diagnose`](/online-writing-skills/skills/diagnose/)) are **guidance, not guarantees** — they
-reflect the frameworks' judgement, not an objective ground truth. Always review output before
-publishing.
+reflect the framework's judgment, not an objective ground truth. And because they are themselves
+LLM-driven, they are subject to the same non-determinism: a score or diagnosis can vary between runs.
+Always review output before publishing.
 
 ## It is token-intensive
 
@@ -87,5 +95,5 @@ when contexts should not mix. Nothing is synced or stored centrally for you.
 ## Runtime and model dependence
 
 The collection is distributed as a plugin for Claude Code and OpenAI Codex CLI and relies on those
-agent runtimes. Behaviour, skill discovery, and quality depend on the host agent and the underlying
+agent runtimes. Behavior, skill discovery, and quality depend on the host agent and the underlying
 model. Features that work in one runtime or model tier may behave differently in another.

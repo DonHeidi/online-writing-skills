@@ -38,7 +38,7 @@ initial setup: purpose, content buckets, and voice/tonality.
 
 ## The workflow
 
-The skills are organised around three areas of work, each with its own guide. Start with **Discovery**
+The skills are organized around three areas of work, each with its own guide. Start with **Discovery**
 — it's the foundation everything else reads — but **Production** and **Review** are areas you move
 between and revisit as you write, not one-way steps:
 

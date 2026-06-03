@@ -24,7 +24,7 @@ argument). Also whenever you want to define, revisit, or sharpen your tonality.
 
 It weaves preference questions, comparisons, and rewrite prompts to extract your values across six
 voice dimensions — Commitment, Reasoning Style, Reader Relationship, Emotional Register, Density, and
-the agent-specific failure modes to resist — then runs a register check by piece type and synthesises
+the agent-specific failure modes to resist — then runs a register check by piece type and synthesizes
 a profile you confirm. It loads `purpose.md` and `buckets.md` so examples come from your real domain.
 
 ## Produces

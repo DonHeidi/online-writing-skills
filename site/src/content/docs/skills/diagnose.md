@@ -19,7 +19,7 @@ standalone ("what's wrong with this?" / "where is this weak?").
 - For rewriting → use [`improve-writing`](/online-writing-skills/skills/improve-writing/).
 
 :::note[Guidance, not ground truth]
-Diagnose reflects the frameworks' judgement, not an objective measure. Use it to focus attention. See
+Diagnose reflects the framework's judgment, not an objective measure. Use it to focus attention. See
 [Known Limitations](/online-writing-skills/guides/limitations/).
 :::
 
