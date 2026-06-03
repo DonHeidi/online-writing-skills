@@ -29,11 +29,16 @@ export default defineConfig({
 						{ label: 'Overview', slug: 'index' },
 						{ label: 'Installation', slug: 'guides/installation' },
 						{ label: 'Getting Started', slug: 'guides/getting-started' },
-						{ label: 'Phase 1 · Discovery', slug: 'guides/discovery' },
-						{ label: 'Phase 2 · Production', slug: 'guides/production' },
-						{ label: 'Phase 3 · Review', slug: 'guides/review' },
 						{ label: 'Configuration', slug: 'guides/configuration' },
 						{ label: 'Known Limitations', slug: 'guides/limitations' },
+					],
+				},
+				{
+					label: 'Workflow',
+					items: [
+						{ label: 'Discovery', slug: 'guides/discovery' },
+						{ label: 'Production', slug: 'guides/production' },
+						{ label: 'Review', slug: 'guides/review' },
 					],
 				},
 				{
