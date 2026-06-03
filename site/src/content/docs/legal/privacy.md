@@ -21,6 +21,15 @@ This site uses no cookies, analytics, tracking, or marketing technologies, and e
 fonts or content that would automatically transmit data to external providers on page load. The
 operator does not collect or store any personal data about your visit.
 
+## No metrics from the plugin or skills
+
+The Online Writing plugin and its skills collect **no metrics, telemetry, or usage data**. The skills
+are plain instructions, reference guides, and a small local helper script that run inside your own
+agent (Claude Code, OpenAI Codex, or Claude Cowork). They make no network calls of their own and send
+nothing to the operator or any third party — including no analytics about which skills you run, how
+often, or on what content. Any data processing that occurs is governed by the agent runtime you use
+and your own local configuration, not by this project.
+
 ## Hosting (GitHub Pages)
 
 This site is hosted on **GitHub Pages**, a service of GitHub, Inc. (a subsidiary of Microsoft
