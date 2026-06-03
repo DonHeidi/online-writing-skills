@@ -2,6 +2,8 @@
 
 A skill collection for turning social-first online writing into a repeatable creative operating system.
 
+📖 **Documentation:** https://donheidi.github.io/online-writing-skills/
+
 > **Disclaimer**
 > This collection is heavily opinionated and closely aligned with my own writing workflows. It is meant to be useful, adaptable, and inspectable, not universal. Feedback, critique, and suggestions are very welcome.
 >
