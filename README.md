@@ -125,11 +125,16 @@ Then start Claude Code and add the cloned repository as a marketplace from insid
 /plugin marketplace add ~/skills/online-writing-skills
 ```
 
-You can also add the GitHub repository directly, if you prefer Claude Code to manage the marketplace clone:
+You can also let Claude Code fetch the repository for you (no local clone needed) by adding its HTTPS URL:
 
 ```text
-/plugin marketplace add DonHeidi/online-writing-skills
+/plugin marketplace add https://github.com/DonHeidi/online-writing-skills.git
 ```
+
+> **Use the HTTPS URL, not the `owner/repo` shorthand.** Claude Code also accepts
+> `/plugin marketplace add DonHeidi/online-writing-skills`, but it clones over SSH
+> (`git@github.com:…`), which requires a configured GitHub SSH key. The HTTPS URL works on any
+> machine — a public repo clones without authentication.
 
 After adding the marketplace, use Claude Code's plugin manager to inspect and install the available plugin or skills:
 
