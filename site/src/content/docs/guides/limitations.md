@@ -69,7 +69,8 @@ substitute for, endorsement of, or official companion to the works it is inspire
 ## Output is non-deterministic
 
 These are LLM-driven skills. The same input can produce different output across runs, and quality
-varies with the model and runtime you use. The evaluation skills
+varies with the model and runtime you use — features that work in one runtime or model tier may behave
+differently in another. The evaluation skills
 ([`rate`](/online-writing-skills/skills/rate/),
 [`diagnose`](/online-writing-skills/skills/diagnose/)) are **guidance, not guarantees** — they
 reflect the framework's judgment, not an objective ground truth. And because they are themselves
@@ -85,15 +86,11 @@ higher token usage — and, on metered runtimes, higher cost and slower turns �
 prompt. Treat it as a deliberate trade: more context and structure in exchange for output that
 actually sounds like you.
 
-## You maintain the configuration
+## Configuration lives outside the agent context — by design
 
-The writer-specific configuration lives **outside** this repository, in each project's
-`.online-writing/` folder (see [Configuration](/online-writing-skills/guides/configuration/)). You are
-responsible for creating, curating, and keeping it current — including using separate project folders
-when contexts should not mix. Nothing is synced or stored centrally for you.
-
-## Runtime and model dependence
-
-The collection is distributed as a plugin for Claude Code and OpenAI Codex CLI and relies on those
-agent runtimes. Behavior, skill discovery, and quality depend on the host agent and the underlying
-model. Features that work in one runtime or model tier may behave differently in another.
+The writer-specific configuration is **not part of the agent or plugin setup**. By design it lives in
+each project's `.online-writing/` folder, separate from the skills' own context, so one installation
+can serve many projects without mixing their voice and strategy (see
+[Configuration](/online-writing-skills/guides/configuration/)). You are responsible for creating,
+curating, and keeping it current — including using separate project folders when contexts should not
+mix. Nothing is synced or stored centrally for you.

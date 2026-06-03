@@ -1,7 +1,15 @@
 ---
 title: headlines
 description: Generate, workshop, or iterate headline variants for a draft, brief, or published piece.
+sidebar:
+  badge:
+    text: Experimental
+    variant: caution
 ---
+
+:::caution[Experimental]
+This skill is experimental and hasn't been tested much yet — expect rough edges.
+:::
 
 Produces and sharpens headline options. Part of
 [Production](/online-writing-skills/guides/production/).

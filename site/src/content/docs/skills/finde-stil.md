@@ -1,7 +1,15 @@
 ---
 title: finde-stil
 description: Define, revisit, or sharpen your German writing voice — produces stil.md from scratch.
+sidebar:
+  badge:
+    text: Experimental
+    variant: caution
 ---
+
+:::caution[Experimental]
+Part of the experimental German workflow — not yet thoroughly tested. Expect rough edges.
+:::
 
 Builds a German voice profile. The German counterpart to
 [`discover-tonality`](/online-writing-skills/skills/discover-tonality/); see the

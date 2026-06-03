@@ -32,7 +32,7 @@ unfair-advantage intersection), **translate to content buckets** (General / Nich
 ## Example
 
 ```text
-Run discover-buckets — help me map my expertise into content buckets and find my genius zone.
+Let's figure out what topics I should focus my writing on.
 ```
 
 ## Related
