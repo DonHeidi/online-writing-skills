@@ -1,7 +1,15 @@
 ---
 title: rewrite-de
 description: Turn an English article into native-sounding German — not a word-for-word translation.
+sidebar:
+  badge:
+    text: Experimental
+    variant: caution
 ---
+
+:::caution[Experimental]
+Part of the experimental German workflow — not yet thoroughly tested. Expect rough edges.
+:::
 
 Transfers an English article into German that reads as if it were originally written in German. Part
 of the [German Workflow](/online-writing-skills/skills/overview/#german-workflow).

@@ -1,7 +1,17 @@
 ---
 title: create-post
 description: Shape raw, unstructured material into a publishable short-form post (800–1,200 words).
+sidebar:
+  badge:
+    text: Deprecated
+    variant: danger
 ---
+
+:::danger[Deprecated]
+This skill is being reworked and will likely be renamed and re-scoped in a future iteration (the
+800–1,200 word range overlaps `create-medium-post` and reads more like a short article than a social
+post). Expect changes here. See the project issues for the rename discussion.
+:::
 
 Finds the structure hiding inside stream-of-consciousness input and shapes it into a short-form post.
 Part of [Production](/online-writing-skills/guides/production/).

@@ -22,6 +22,13 @@ The score reflects the framework's judgment, not an objective measure of quality
 attention, then make the call yourself. See [Known Limitations](/online-writing-skills/guides/limitations/).
 :::
 
+:::caution[Run it once per session]
+The rating is **poisoned by context** when run repeatedly in the same conversation — earlier ratings
+and discussion bias later ones. Run it **once per fresh session/context** for a clean read. As a rule
+of thumb a piece scoring above ~80 is usually fine; an LLM will keep finding nitpicks and escalating
+them into "issues" if you let it.
+:::
+
 ## Example
 
 ```text

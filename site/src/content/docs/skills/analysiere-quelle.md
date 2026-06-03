@@ -1,7 +1,15 @@
 ---
 title: analysiere-quelle
 description: Extract a German brief from any-language raw material as the planning artefact for a German article.
+sidebar:
+  badge:
+    text: Experimental
+    variant: caution
 ---
+
+:::caution[Experimental]
+Part of the experimental German workflow — not yet thoroughly tested. Expect rough edges.
+:::
 
 Extracts a German brief from raw material so a German long-form piece can be drafted from it. Part of
 the [German Workflow](/online-writing-skills/skills/overview/#german-workflow).

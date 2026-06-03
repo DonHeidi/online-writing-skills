@@ -6,6 +6,11 @@ description: Shape raw material into a publishable long-form piece (2,500–3,00
 Shapes raw material into a long-form piece — full blog post, article, essay, deep dive, or feature.
 Part of [Production](/online-writing-skills/guides/production/).
 
+:::note[Entry point for long-form]
+This is currently the main entry point for long-form content — start here when you're producing a
+full article rather than a short post.
+:::
+
 ## When to use it
 
 When you have raw material (brain dump, notes, research, bullet points) and want it shaped into a

@@ -7,6 +7,8 @@ A skill collection for turning social-first online writing into a repeatable cre
 > **Disclaimer**
 > This collection is heavily opinionated and closely aligned with my own writing workflows. It is meant to be useful, adaptable, and inspectable, not universal. Feedback, critique, and suggestions are very welcome.
 >
+> Some functionality is **experimental or beta** — in particular the German workflow, `illustrate`, and `headlines` — and `create-post` is **deprecated** and being reworked. Expect rough edges and changes in these areas. See the [Known Limitations](https://donheidi.github.io/online-writing-skills/guides/limitations/) page.
+>
 > The skills are highly affected by their project context. Do not expect good results without setting the project context first: purpose, content buckets, and especially tonality. Without that context, produced texts may sound overly marketing- or sales-driven. The workflow works best when the agent has enough local context to understand the writer's actual voice, audience, and intent.
 
 ## Purpose

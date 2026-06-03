@@ -1,7 +1,15 @@
 ---
 title: schreibe-entwurf
 description: Draft a long-form German article (2,500–3,000 words) from a German brief.
+sidebar:
+  badge:
+    text: Experimental
+    variant: caution
 ---
+
+:::caution[Experimental]
+Part of the experimental German workflow — not yet thoroughly tested. Expect rough edges.
+:::
 
 Drafts long-form German prose from a brief. Part of the
 [German Workflow](/online-writing-skills/skills/overview/#german-workflow).
