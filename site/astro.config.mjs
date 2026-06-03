@@ -18,6 +18,11 @@ export default defineConfig({
 					label: 'GitHub',
 					href: 'https://github.com/DonHeidi/online-writing-skills',
 				},
+				{
+					icon: 'external',
+					label: 'sebastian-heitmann.dev',
+					href: 'https://www.sebastian-heitmann.dev',
+				},
 			],
 			editLink: {
 				baseUrl: 'https://github.com/DonHeidi/online-writing-skills/edit/main/site/',
@@ -84,6 +89,13 @@ export default defineConfig({
 								{ label: 'rewrite-de', slug: 'skills/rewrite-de' },
 							],
 						},
+					],
+				},
+				{
+					label: 'Legal',
+					items: [
+						{ label: 'Privacy', slug: 'legal/privacy' },
+						{ label: 'Imprint', slug: 'legal/imprint' },
 					],
 				},
 			],
