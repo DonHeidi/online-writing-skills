@@ -27,7 +27,7 @@ It moves from a broad opening ("why are you thinking about writing online right 
 dimensions that are most alive for you — motivation, audience, category, point of view, style
 (educating vs. entertaining), and vision — then reflects back a draft you sharpen until it's yours.
 
-**Produces** `purpose.md`: the labelled dimensions, a natural-language **Purpose Statement**, and a
+**Produces** `purpose.md`: the labeled dimensions, a natural-language **Purpose Statement**, and a
 five-question **Decision Filter** the other skills use to judge whether a topic is worth your time.
 
 ```text
@@ -58,7 +58,7 @@ needs `purpose.md` and `buckets.md` so its examples are drawn from your real dom
 It weaves preference questions, comparisons, and rewrite prompts to extract your values across six
 voice dimensions — Commitment, Reasoning Style, Reader Relationship, Emotional Register, Density, and
 the failure modes the agent should resist — then checks how your voice shifts by piece type and
-synthesises a profile you confirm.
+synthesizes a profile you confirm.
 
 **Produces** `tonality.md`: a voice summary, dimension profiles, agent-specific failure modes, register
 tendencies, format rules, and 8–10 reference samples from your own rewrites. Every content skill loads
@@ -76,7 +76,7 @@ Run [`finde-stil`](/online-writing-skills/skills/finde-stil/) instead of `discov
 ## When discovery is "done"
 
 You have a populated `purpose.md`, `buckets.md`, and `tonality.md` (or `stil.md`) that you actually
-recognise as yours. They're **re-runnable** — revisit any of them later to refine the foundation as
+recognize as yours. They're **re-runnable** — revisit any of them later to refine the foundation as
 your writing evolves.
 
 With the foundation in place, move on to **[Production](/online-writing-skills/guides/production/)**.

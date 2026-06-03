@@ -10,7 +10,7 @@ Generates Midjourney prompts for imagery to pair with a written piece. Part of
 
 When you have a written piece that's missing accompanying imagery and needs visual assets — banner,
 header, hero image, section illustration, or social share graphic. Signals: the piece is publish-ready
-in words but has no imagery, or you're preparing a post for a platform that favours a hero image.
+in words but has no imagery, or you're preparing a post for a platform that favors a hero image.
 
 It produces **Midjourney prompts** and may be followed by the `article-image-flow` automation for
 Midjourney submission, asset capture, and website wiring.

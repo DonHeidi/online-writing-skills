@@ -249,10 +249,10 @@ This collection is useful within a specific scope. The main constraints, condens
 [Known Limitations](https://donheidi.github.io/online-writing-skills/guides/limitations/) page for
 detail):
 
-- **Needs project context to be good.** Without purpose, content buckets, and especially voice, output drifts toward generic, sales-driven defaults. Discovery setup is a prerequisite, not an optional extra.
+- **Depends on your project context — by design.** Without purpose, content buckets, and especially voice, output drifts toward generic, sales-driven defaults. This is a deliberate choice so output sounds like you; discovery setup is a prerequisite, not an optional extra.
 - **Opinionated, not universal.** The frameworks and defaults encode one writer's house style; other conventions (academic, journalistic, technical reference) will meet friction.
-- **English-first; partial German.** German support is a scoped subset, and short-form German drafting (`schreibe-post`) and German micro-post distillation (`destilliere`) are referenced but not built yet. Other languages are unsupported.
-- **Not a one-shot generator.** The skills package your thinking; they do not supply the ideas, point of view, or judgement.
+- **American English first; experimental German.** German support is experimental — a scoped subset; short-form German drafting (`schreibe-post`) and German micro-post distillation (`destilliere`) are referenced but not built yet. Other languages are unsupported.
+- **Not a one-shot generator.** The skills package your thinking; they do not supply the ideas, point of view, or judgment — and producing something good is iterative.
 - **No SEO.** The workflows target human (and AI) readers, not search ranking.
 - **Imagery is Midjourney-only**, and the end-to-end image workflow is only partially built.
 - **Output is non-deterministic.** `rate` and `diagnose` are guidance, not ground truth — always review before publishing.

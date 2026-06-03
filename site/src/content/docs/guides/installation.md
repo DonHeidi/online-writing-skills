@@ -11,7 +11,10 @@ The collection ships as a plugin for both **Claude Code** and **OpenAI Codex CLI
 Claude Code supports plugin marketplaces. The canonical reference is the
 [Claude Code plugin docs](https://code.claude.com/docs/en/discover-plugins.md).
 
-Add this repository as a marketplace using its **HTTPS URL**, then install the plugin:
+You install the plugin **directly from the public GitHub repository**
+([`github.com/DonHeidi/online-writing-skills`](https://github.com/DonHeidi/online-writing-skills)) — no
+local clone required. Add the repository as a marketplace using its **HTTPS URL**, then install the
+plugin:
 
 ```text
 /plugin marketplace add https://github.com/DonHeidi/online-writing-skills.git

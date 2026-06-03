@@ -31,7 +31,7 @@ Rate the result — is it ready to ship?
 ```
 
 :::note[Guidance, not ground truth]
-`rate` and `diagnose` reflect the frameworks' judgement, not an objective measure of quality. Use them
+`rate` and `diagnose` reflect the framework's judgment, not an objective measure of quality. Use them
 to focus your attention — then make the call yourself. See
 [Known Limitations](/online-writing-skills/guides/limitations/).
 :::

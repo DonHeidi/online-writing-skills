@@ -21,12 +21,12 @@ decisions. Also whenever you want to define, revisit, or sharpen your purpose.
 
 An interview, not a form. It moves through four phases: a broad **Opening** ("why are you thinking
 about writing online right now?"), **Following the Thread** across the dimensions most alive for you
-(motivation, audience, category, point of view, style, vision), **Surfacing the Purpose** (a reflected-
-back draft statement), and **Sharpening** until it's yours.
+(motivation, audience, category, point of view, style, vision), **Surfacing the Purpose** (a draft
+statement reflected back to you), and **Sharpening** until it's yours.
 
 ## Produces
 
-`purpose.md` — the labelled dimensions, a natural-language **Purpose Statement**, and a five-question
+`purpose.md` — the labeled dimensions, a natural-language **Purpose Statement**, and a five-question
 **Decision Filter** the other skills use to judge whether a topic is worth your time.
 
 ## Example
