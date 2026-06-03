@@ -1,0 +1,65 @@
+---
+title: Getting Started
+description: Set up a writing project and establish the durable foundation the skills build on.
+---
+
+The collection is meant to be used inside a **writing project folder**, not only as a global
+assistant prompt. A project folder gives the agent one writing context — a personal blog, a
+founder-led content system, a newsletter, a client project — with its own purpose, audience, topics,
+and voice.
+
+Use separate folders when concerns should stay separate:
+
+```text
+~/writing/personal-blog/
+~/writing/company-content/
+~/writing/client-acme/
+```
+
+Each folder gets its own `.online-writing/` configuration, so one installation can support different
+voices and strategies without mixing them. See [Configuration](../configuration/).
+
+## First-time setup
+
+1. Create or choose a project folder for the writing context.
+2. Make the skills available to your agent — see [Installation](../installation/).
+3. Start your agent from the project folder, or tell it explicitly which folder is the project.
+4. Ask the agent to set up the online-writing configuration for this project.
+5. Run the **discovery skills** to establish the foundation (details below).
+6. Once the foundation exists, use the **production skills** for ideation, drafting, rewriting,
+   diagnosis, rating, and repurposing.
+
+A good first prompt:
+
+```text
+I want to set up this folder as an online writing project. Please guide me through the
+initial setup: purpose, content buckets, and voice/tonality.
+```
+
+## Establish the foundation
+
+The discovery skills are interviews, not forms. They build the durable context every other skill reads.
+
+- **`discover-purpose`** — define why you write, who for, and what decisions future content should
+  pass. Produces `purpose.md` with a Purpose Statement and a five-question Decision Filter.
+- **`discover-buckets`** — map your expertise into a genius zone and content buckets (General / Niche
+  / Industry). Produces `expertise.md` and `buckets.md`.
+- **`discover-tonality`** — build an English voice profile from examples and preferences. Produces
+  `tonality.md`: voice summary, dimension profiles, failure modes, register tendencies, and reference
+  samples. Writing in German? Use **`finde-stil`** to produce `stil.md`.
+
+See the full reference in [Discovery](../../skills/discovery/).
+
+## Then produce
+
+After setup, prompts can be direct:
+
+```text
+Use my online-writing context to explore three angles for a post about AI adoption risk.
+Diagnose this draft and tell me why it does not land yet.
+Turn this article into five X posts and two LinkedIn shorts.
+```
+
+The skills guide both setup and execution — you do not need to fill every configuration file by hand.
+The discovery skills interview you, create the initial configuration, and make later writing tasks
+more consistent.
