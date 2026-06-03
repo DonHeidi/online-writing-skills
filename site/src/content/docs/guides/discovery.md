@@ -69,7 +69,7 @@ Run discover-tonality — build my voice profile from examples so drafts sound l
 ```
 
 :::note[Writing in German?]
-Run [`finde-stil`](/online-writing-skills/skills/german/) instead of `discover-tonality`. It produces
+Run [`finde-stil`](/online-writing-skills/skills/finde-stil/) instead of `discover-tonality`. It produces
 `stil.md` from scratch in German and is independent of `tonality.md`.
 :::
 
@@ -80,5 +80,6 @@ recognise as yours. They're **re-runnable** — revisit any of them later to ref
 your writing evolves.
 
 With the foundation in place, move on to **[Production](/online-writing-skills/guides/production/)**.
-For the full step-by-step breakdown of each interview, see the
-[Discovery reference](/online-writing-skills/skills/discovery/).
+For each interview's details, see [`discover-purpose`](/online-writing-skills/skills/discover-purpose/),
+[`discover-buckets`](/online-writing-skills/skills/discover-buckets/), and
+[`discover-tonality`](/online-writing-skills/skills/discover-tonality/).

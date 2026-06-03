@@ -8,7 +8,7 @@ where it stops is part of using it well.
 
 ## It needs project context to be good
 
-The single biggest limitation: without [discovery](/online-writing-skills/skills/discovery/)
+The single biggest limitation: without [discovery](/online-writing-skills/guides/discovery/)
 (`purpose.md`, `buckets.md`, and especially `tonality.md`), the production skills fall back to safe,
 generic defaults and drift toward a sales-y, everyone's-voice register. The skills work without
 configuration, but they are not designed to produce *your* voice from nothing. Treat the
@@ -30,7 +30,7 @@ a smaller, intentionally scoped subset — source analysis (`analysiere-quelle`)
 
 The German pipeline has **known gaps**: short-form German drafting (`schreibe-post`) and German
 micro-post distillation (`destilliere`) are referenced as future skills and **do not exist yet**. See
-the [German Workflow](/online-writing-skills/skills/german/) for what is currently covered. Other
+the [German workflow](/online-writing-skills/skills/overview/#german-workflow) for what is currently covered. Other
 languages are not supported.
 
 ## It is not a one-shot content generator
@@ -48,7 +48,7 @@ formatting. If you need SEO, you will have to layer it on yourself.
 
 ## Imagery is Midjourney-only
 
-The [`illustrate`](/online-writing-skills/skills/refine-repurpose/) skill produces **Midjourney
+The [`illustrate`](/online-writing-skills/skills/illustrate/) skill produces **Midjourney
 prompts** only. It does not target other image generators, search stock photography, or edit existing
 images, and the end-to-end image workflow (submission, asset capture, wiring) is only partially built.
 
@@ -63,8 +63,8 @@ substitute for, endorsement of, or official companion to the works it is inspire
 
 These are LLM-driven skills. The same input can produce different output across runs, and quality
 varies with the model and runtime you use. The evaluation skills
-([`rate`](/online-writing-skills/skills/refine-repurpose/),
-[`diagnose`](/online-writing-skills/skills/refine-repurpose/)) are **guidance, not guarantees** — they
+([`rate`](/online-writing-skills/skills/rate/),
+[`diagnose`](/online-writing-skills/skills/diagnose/)) are **guidance, not guarantees** — they
 reflect the frameworks' judgement, not an objective ground truth. Always review output before
 publishing.
 

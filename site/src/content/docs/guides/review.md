@@ -52,12 +52,12 @@ Distill this piece into five X micros and two LinkedIn shorts.
 
 ## Illustrate
 
-Run [`illustrate`](/online-writing-skills/skills/refine-repurpose/) on a publish-ready piece to produce
+Run [`illustrate`](/online-writing-skills/skills/illustrate/) on a publish-ready piece to produce
 **Midjourney prompts** for companion imagery — banner, header, hero, section illustration, or social
 share graphic.
 
 ## When it's done
 
 The piece clears your `rate` bar, reads the way `diagnose` and `improve-writing` shaped it, and has the
-abstract, repurposed posts, and imagery you need. For the per-skill reference, see
-[Refine & Repurpose](/online-writing-skills/skills/refine-repurpose/).
+abstract, repurposed posts, and imagery you need. For the per-skill reference, see the
+[skills index](/online-writing-skills/skills/overview/).

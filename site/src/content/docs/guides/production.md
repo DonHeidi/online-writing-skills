@@ -51,7 +51,7 @@ Turn these notes into a short-form post (use create-post): <raw material>.
 
 ### Headlines
 
-Run [`headlines`](/online-writing-skills/skills/ideation-drafting/) any time you want options — for a
+Run [`headlines`](/online-writing-skills/skills/headlines/) any time you want options — for a
 finished draft, a topic brief with no draft yet, or a published piece whose title is underperforming.
 Each variant aims to communicate the What, the Who, and the Promise, with a curiosity gap.
 
@@ -59,10 +59,10 @@ Each variant aims to communicate the What, the Who, and the Promise, with a curi
 
 The German pipeline has its own production path: extract a brief with `analysiere-quelle`, then draft
 with `schreibe-entwurf`; or transfer an existing English article with `rewrite-de`. See the
-[German Workflow](/online-writing-skills/skills/german/).
+[German workflow](/online-writing-skills/skills/overview/#german-workflow).
 
 ## Next
 
 A finished draft is ready for **[Review](/online-writing-skills/guides/review/)** — diagnose its
-structure, rate its quality, tighten it, and repurpose it. For the per-skill reference, see
-[Ideation & Drafting](/online-writing-skills/skills/ideation-drafting/).
+structure, rate its quality, tighten it, and repurpose it. For the per-skill reference, see the
+[skills index](/online-writing-skills/skills/overview/).
