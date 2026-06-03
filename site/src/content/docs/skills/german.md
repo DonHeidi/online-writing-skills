@@ -13,7 +13,7 @@ Define, revisit, or sharpen your **German** writing voice. Use it when German co
 consistently produce output that doesn't sound like your German. Triggers: "finde meinen stil",
 "deutsche tonalität", "deutscher schreibstil".
 
-Independent of [`discover-tonality`](../discovery/) — it does **not** read `tonality.md` and
+Independent of [`discover-tonality`](/online-writing-skills/skills/discovery/) — it does **not** read `tonality.md` and
 produces `stil.md` from scratch in German.
 
 ## `analysiere-quelle`

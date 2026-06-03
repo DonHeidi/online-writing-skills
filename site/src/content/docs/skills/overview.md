@@ -15,7 +15,7 @@ feeds production, production feeds refinement and repurposing.
 | `discover-buckets` | You have a sense of purpose but don't know which topics you actually own. |
 | `discover-tonality` | Your output sounds generic or "not like me", or the register mismatches the piece type. |
 
-→ [Discovery details](../discovery/)
+→ [Discovery details](/online-writing-skills/skills/discovery/)
 
 ## Ideation & drafting
 
@@ -28,7 +28,7 @@ feeds production, production feeds refinement and repurposing.
 | `create-medium-post` | Draft a Medium-ready article saved as Markdown, with hook and publication notes. |
 | `headlines` | Generate, workshop, or iterate headline variants. |
 
-→ [Ideation & Drafting details](../ideation-drafting/)
+→ [Ideation & Drafting details](/online-writing-skills/skills/ideation-drafting/)
 
 ## Refine & repurpose
 
@@ -41,7 +41,7 @@ feeds production, production feeds refinement and repurposing.
 | `distill` | Break a long piece into micro-posts (≤280 chars) or LinkedIn shorts (800–1,200 chars). |
 | `illustrate` | Produce Midjourney prompts for companion imagery. |
 
-→ [Refine & Repurpose details](../refine-repurpose/)
+→ [Refine & Repurpose details](/online-writing-skills/skills/refine-repurpose/)
 
 ## German workflow
 
@@ -52,4 +52,4 @@ feeds production, production feeds refinement and repurposing.
 | `schreibe-entwurf` | Draft a long-form German article (2,500–3,000 words) from a brief. |
 | `rewrite-de` | Turn an English article into native-sounding German (not a word-for-word translation). |
 
-→ [German Workflow details](../german/)
+→ [German Workflow details](/online-writing-skills/skills/german/)

@@ -14,7 +14,7 @@ complementary: `improve-writing` changes the text, `diagnose` flags issues witho
 Use when an existing draft already has structure — headers, partial sections, framework annotations,
 a clear direction — and wants to be refined, tightened, restructured, or finished. Signals: the draft
 feels flat or rough, sections trail off, you can't name what's wrong but know it isn't ready. Not for
-raw unstructured input (see [`create-post` / `create-draft`](../ideation-drafting/)).
+raw unstructured input (see [`create-post` / `create-draft`](/online-writing-skills/skills/ideation-drafting/)).
 
 ### `diagnose`
 
