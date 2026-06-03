@@ -30,6 +30,7 @@ export default defineConfig({
 						{ label: 'Installation', slug: 'guides/installation' },
 						{ label: 'Getting Started', slug: 'guides/getting-started' },
 						{ label: 'Configuration', slug: 'guides/configuration' },
+						{ label: 'Known Limitations', slug: 'guides/limitations' },
 					],
 				},
 				{
