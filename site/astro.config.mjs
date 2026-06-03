@@ -45,10 +45,45 @@ export default defineConfig({
 					label: 'Skills',
 					items: [
 						{ label: 'All skills', slug: 'skills/overview' },
-						{ label: 'Discovery', slug: 'skills/discovery' },
-						{ label: 'Ideation & Drafting', slug: 'skills/ideation-drafting' },
-						{ label: 'Refine & Repurpose', slug: 'skills/refine-repurpose' },
-						{ label: 'German Workflow', slug: 'skills/german' },
+						{
+							label: 'Discovery',
+							items: [
+								{ label: 'discover-purpose', slug: 'skills/discover-purpose' },
+								{ label: 'discover-buckets', slug: 'skills/discover-buckets' },
+								{ label: 'discover-tonality', slug: 'skills/discover-tonality' },
+							],
+						},
+						{
+							label: 'Ideation & Drafting',
+							items: [
+								{ label: 'ideate', slug: 'skills/ideate' },
+								{ label: 'explore-idea', slug: 'skills/explore-idea' },
+								{ label: 'create-post', slug: 'skills/create-post' },
+								{ label: 'create-draft', slug: 'skills/create-draft' },
+								{ label: 'create-medium-post', slug: 'skills/create-medium-post' },
+								{ label: 'headlines', slug: 'skills/headlines' },
+							],
+						},
+						{
+							label: 'Refine & Repurpose',
+							items: [
+								{ label: 'improve-writing', slug: 'skills/improve-writing' },
+								{ label: 'diagnose', slug: 'skills/diagnose' },
+								{ label: 'rate', slug: 'skills/rate' },
+								{ label: 'tldr', slug: 'skills/tldr' },
+								{ label: 'distill', slug: 'skills/distill' },
+								{ label: 'illustrate', slug: 'skills/illustrate' },
+							],
+						},
+						{
+							label: 'German Workflow',
+							items: [
+								{ label: 'finde-stil', slug: 'skills/finde-stil' },
+								{ label: 'analysiere-quelle', slug: 'skills/analysiere-quelle' },
+								{ label: 'schreibe-entwurf', slug: 'skills/schreibe-entwurf' },
+								{ label: 'rewrite-de', slug: 'skills/rewrite-de' },
+							],
+						},
 					],
 				},
 			],

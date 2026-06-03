@@ -74,5 +74,5 @@ the `skills/`, `references/`, and `CONFIG.md` files.
 :::tip[Set context first]
 The skills are heavily affected by project context. Without **purpose**, **content buckets**, and
 especially **voice/tonality**, output may sound generic or sales-driven. Run the
-[discovery skills](/online-writing-skills/skills/discovery/) before producing content. See [Getting Started](/online-writing-skills/guides/getting-started/).
+[discovery skills](/online-writing-skills/guides/discovery/) before producing content. See [Getting Started](/online-writing-skills/guides/getting-started/).
 :::

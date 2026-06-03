@@ -42,4 +42,4 @@ Each skill documents which config files it reads in its own `SKILL.md`. The gene
    and fall back to universal guidance when a file is still empty.
 
 This means the skills degrade gracefully: they work without configuration, but get markedly better
-once the [discovery skills](/online-writing-skills/skills/discovery/) have run.
+once the [discovery skills](/online-writing-skills/guides/discovery/) have run.
