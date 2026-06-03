@@ -5,7 +5,7 @@ description: The discovery skills establish purpose, content buckets, and voice 
 
 The discovery skills build the durable context the rest of the collection depends on. They are
 **interviews, not forms** — the agent asks questions, reflects back drafts, and iterates until the
-result sounds like you. Run them first; see [Getting Started](../../guides/getting-started/).
+result sounds like you. Run them first; see [Getting Started](/online-writing-skills/guides/getting-started/).
 
 ## `discover-purpose`
 
@@ -62,6 +62,6 @@ tendencies, format rules, and 8–10 reference samples from your own rewrites. I
 the content skills load, not a style guide for human editing.
 
 :::note[Writing in German?]
-Use [`finde-stil`](../german/) instead — it produces `stil.md` from scratch in German and does
+Use [`finde-stil`](/online-writing-skills/skills/german/) instead — it produces `stil.md` from scratch in German and does
 not read `tonality.md`.
 :::

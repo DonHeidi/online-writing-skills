@@ -17,12 +17,12 @@ Use separate folders when concerns should stay separate:
 ```
 
 Each folder gets its own `.online-writing/` configuration, so one installation can support different
-voices and strategies without mixing them. See [Configuration](../configuration/).
+voices and strategies without mixing them. See [Configuration](/online-writing-skills/guides/configuration/).
 
 ## First-time setup
 
 1. Create or choose a project folder for the writing context.
-2. Make the skills available to your agent — see [Installation](../installation/).
+2. Make the skills available to your agent — see [Installation](/online-writing-skills/guides/installation/).
 3. Start your agent from the project folder, or tell it explicitly which folder is the project.
 4. Ask the agent to set up the online-writing configuration for this project.
 5. Run the **discovery skills** to establish the foundation (details below).
@@ -48,7 +48,7 @@ The discovery skills are interviews, not forms. They build the durable context e
   `tonality.md`: voice summary, dimension profiles, failure modes, register tendencies, and reference
   samples. Writing in German? Use **`finde-stil`** to produce `stil.md`.
 
-See the full reference in [Discovery](../../skills/discovery/).
+See the full reference in [Discovery](/online-writing-skills/skills/discovery/).
 
 ## Then produce
 

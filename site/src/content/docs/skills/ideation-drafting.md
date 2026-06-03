@@ -4,7 +4,7 @@ description: Skills that mine ideas, explore angles, and shape raw material into
 ---
 
 These skills take you from "I have a topic" or "I have a pile of notes" to a structured, publishable
-piece. They read your [discovery](../discovery/) context so ideas and drafts align with your
+piece. They read your [discovery](/online-writing-skills/skills/discovery/) context so ideas and drafts align with your
 purpose, buckets, and voice.
 
 ## Ideation
@@ -44,6 +44,6 @@ communicate the What, the Who, and the Promise, with a curiosity gap. Not for fu
 quality diagnosis.
 
 :::tip[Natural next steps]
-After drafting, run [`diagnose`](../refine-repurpose/) for a structural review and
-[`rate`](../refine-repurpose/) for a quality scorecard before you ship.
+After drafting, run [`diagnose`](/online-writing-skills/skills/refine-repurpose/) for a structural review and
+[`rate`](/online-writing-skills/skills/refine-repurpose/) for a quality scorecard before you ship.
 :::
