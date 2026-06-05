@@ -1,6 +1,6 @@
 # Online Writing Skills
 
-A skill collection for turning social-first online writing into a repeatable creative operating system.
+A structured editorial thinking system for AI agents.
 
 📖 **Documentation:** https://donheidi.github.io/online-writing-skills/
 
