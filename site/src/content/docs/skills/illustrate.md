@@ -13,7 +13,9 @@ header, hero image, section illustration, or social share graphic. Signals: the 
 in words but has no imagery, or you're preparing a post for a platform that favors a hero image.
 
 It produces **Midjourney prompts** and may be followed by the `article-image-flow` automation for
-Midjourney submission, asset capture, and website wiring.
+Midjourney submission, asset capture, and website wiring. When using exclusions in prompts, combine
+them into one `--no` parameter, for example `--no text, logos, stock-photo aesthetic`; Midjourney
+v8.1 rejects repeated `--no` flags.
 
 ## When not to use it
 

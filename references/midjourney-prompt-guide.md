@@ -10,7 +10,7 @@ A reference for writing Midjourney prompts that pair well with online articles. 
 
 **Specific beats vague.** "Enormous" over "big." "Fog" over "weather." "Brass pocket watch" over "old clock." Precise nouns and adjectives steer the model; generic ones let it drift.
 
-**Positive beats negative.** Describe what you *want*, not what you don't. "Party with no cake" will often produce a cake. For true exclusions, use the `--no` parameter at the end.
+**Positive beats negative.** Describe what you *want*, not what you don't. "Party with no cake" will often produce a cake. For true exclusions, use the `--no` parameter at the end. If excluding multiple things, combine them in one parameter: `--no text, logos, stock-photo aesthetic`. Do not emit repeated `--no` flags; Midjourney v8.1 rejects multiple `--no` parameters.
 
 **Numbers beat plurals.** "Cats" is ambiguous (one? ten? a hundred?). "Three cats" or "a flock of birds" anchors the count.
 
@@ -49,7 +49,7 @@ Parameters go at the end of the prompt. Use a space before the `--`. No punctuat
 | Aspect ratio | `--ar W:H` | Frame shape | `16:9`, `3:2`, `2:3`, `4:5`, `1:1`, `9:16` |
 | Version | `--v N` | Model version | Defer to user's Midjourney default unless they ask |
 | Stylize | `--s N` or `--stylize N` | How artistic the interpretation | 0–1000. Default 100. 50 = close to literal, 250 = painterly, 750+ = heavily stylized |
-| No | `--no THING` | Exclude something | `--no text`, `--no people`, `--no stock-photo` |
+| No | `--no THING, OTHER THING` | Exclude one or more things. Use one combined `--no` parameter, not repeated `--no` flags; Midjourney v8.1 rejects multiple `--no` parameters. | `--no text, logos, stock-photo aesthetic` |
 | Raw | `--raw` | Less stylized, more literal | Flag (no value) — useful for photographic realism. **Common mistake:** `--style raw` is not valid syntax; the correct form is `--raw` with no value. |
 
 ### Useful

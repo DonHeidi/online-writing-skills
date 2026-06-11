@@ -152,7 +152,7 @@ After producing the output above, offer two optional next steps. Keep it brief a
 ## Important Reminders
 
 - **Midjourney prefers short, specific, positive prompts.** Long prompts with many qualifiers dilute the focus. Cut anything that isn't pulling weight.
-- **Describe what you want, not what you don't.** For true exclusions, use `--no` at the end (`--no text`, `--no people`, `--no stock-photo aesthetic`).
+- **Describe what you want, not what you don't.** For true exclusions, use one combined `--no` parameter at the end (`--no text, logos, stock-photo aesthetic`). Do not emit repeated `--no` flags (`--no text --no logos`); Midjourney v8.1 rejects multiple `--no` parameters.
 - **Numbers beat plurals.** "Three climbers on a ridge" is better than "climbers on a ridge."
 - **One scene, not a list.** Don't stack unrelated elements. Midjourney renders coherent imagery from coherent prompts.
 - **Don't include `--v` unless the user specifies a version.** Let Midjourney use the user's configured default.
