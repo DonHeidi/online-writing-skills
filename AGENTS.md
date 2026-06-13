@@ -8,11 +8,15 @@ This is **not a software application** — it is a distributable collection of A
 
 ## Commands
 
-The only executable pieces are the word-count script and the docs site.
+The executable pieces are the word-count script, the docs site, and the changesets release tooling (see "Versioning & releases").
 
 ```sh
 # Word counting (used by skills; also runnable directly)
 cat draft.md | scripts/count-words        # prints a single integer
+
+# Versioning (changesets); install root deps first with `npm install`
+npm run changeset                          # record a change + choose the bump
+npm run version-packages                   # apply pending changesets locally (CI normally does this)
 
 # Docs site (Astro Starlight), from site/
 cd site
@@ -71,9 +75,24 @@ The same `skills/` directory is published through three manifests — keep them 
 - `.claude-plugin/plugin.json` + `.claude-plugin/marketplace.json` (Claude Code)
 - `.codex-plugin/plugin.json` and `.agents/plugins/marketplace.json` (Codex)
 
-**Version is duplicated** in `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` — bump both together. The long plugin `description` fields also enumerate the pipeline; update them when the skill set changes materially.
+**Version is managed by [changesets](https://github.com/changesets/changesets), not by hand.** The root `package.json` holds the canonical version; `scripts/sync-version.mjs` mirrors it into `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json`. Never edit any of the three `version` fields directly — see "Versioning & releases" below. The long plugin `description` fields are *not* versioned this way; they enumerate the pipeline, so update them by hand when the skill set changes materially.
 
 The `site/src/content/docs/skills/*.md` pages are **hand-maintained mirrors** of the skills (one per skill, plus `overview.md`), not generated. Adding, renaming, or significantly changing a skill should be reflected there. Internal links in the site must be **absolute, base-prefixed** (`/online-writing-skills/...`) — Astro does not auto-prefix the configured `base`.
+
+## Versioning & releases
+
+Versioning and release notes are automated with [changesets](https://github.com/changesets/changesets). The flow:
+
+1. **Every change that affects users adds a changeset.** Run `npm run changeset`, pick the bump (patch / minor / major for the single `online-writing` package), and write a one-line summary in the writer's voice — it becomes a CHANGELOG/Release line. This commits a Markdown file under `.changeset/`. Doc-only, CI-only, or internal-refactor commits don't need one.
+2. **On push to `main`, CI does the rest** (`.github/workflows/release.yml` → `changesets/action`). While unreleased changesets sit on `main`, the action keeps a **"chore: version packages"** PR open that previews the next version + CHANGELOG. Merging that PR runs `npm run version-packages` (which runs `changeset version` to bump the root `package.json` + write `CHANGELOG.md`, then `node scripts/sync-version.mjs` to mirror the version into both plugin manifests), then tags the commit (`changeset tag`) and cuts a **GitHub Release** from the changelog entry. Nothing is published to a package registry — the plugin ships straight from the repo.
+
+**One-time repo setup:** the release workflow needs **Settings → Actions → General → Workflow permissions → "Allow GitHub Actions to create and approve pull requests"** enabled. Without it `changesets/action` cannot open the "version packages" PR and the flow silently stalls.
+
+Practical rules:
+
+- **Never hand-edit a `version` field** in `package.json`, `.claude-plugin/plugin.json`, or `.codex-plugin/plugin.json`. `scripts/sync-version.mjs` owns the two manifests; changesets owns `package.json`.
+- The docs site (`site/`) is **not** part of this — it has its own `package.json` and is not a workspace, so changesets never touches it.
+- `CHANGELOG.md` (repo root) is generated; don't write it by hand.
 
 ## Status flags to respect
 

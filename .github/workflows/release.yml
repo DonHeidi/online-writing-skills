@@ -1,0 +1,55 @@
+name: Release
+
+# PREREQUISITE: enable Settings → Actions → General → Workflow permissions →
+# "Allow GitHub Actions to create and approve pull requests". Without it,
+# changesets/action cannot open the "version packages" PR and the release
+# flow silently stalls.
+
+on:
+  push:
+    branches: [main]
+
+# changesets/action needs to push the "Version Packages" PR/branch, the
+# version-bump commit, and the release tags; it also creates GitHub Releases.
+permissions:
+  contents: write
+  pull-requests: write
+
+# Never run two release jobs against main at once — they'd race on the
+# version PR and the tags.
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          # Full history so changeset tag can see existing tags.
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      # When changesets exist on main, this opens/updates a "Version Packages"
+      # PR. When that PR is merged (no changesets left), `publish` runs:
+      # `changeset tag` creates the release tag, and the action pushes it and
+      # cuts a GitHub Release from the CHANGELOG entry. Nothing is published to
+      # any package registry — the plugin ships straight from the repo.
+      - name: Create Release PR or tag release
+        uses: changesets/action@v1
+        with:
+          version: npm run version-packages
+          publish: npm run release
+          title: 'chore: version packages'
+          commit: 'chore: version packages'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

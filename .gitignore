@@ -3,6 +3,9 @@
 # editor config
 .vscode/
 
+# Release tooling (changesets CLI lives in root package.json)
+/node_modules/
+
 # Astro docs site (site/)
 site/node_modules/
 site/dist/
