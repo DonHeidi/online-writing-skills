@@ -6,6 +6,17 @@ description: Score a piece systematically — VPM (value per minute) and quality
 A structured quality read used to decide whether a piece is ready. Part of
 [Review](/online-writing-skills/guides/review/). It evaluates only — it does not rewrite.
 
+The score is **computed, not chosen**: each of the six dimensions is scored against fixed rubric
+anchors, then combined with the VPM subscore through a fixed weight profile (the weights depend on
+whether the piece is technical, opinion, or narrative), and the calculation is shown in the output. A
+**deduction ledger** names the observable defect that kept each dimension from the next level — and
+recommendations (zero to three) may only be derived from that ledger. "No material score-improving
+changes identified" is a valid, expected result for a finished piece.
+
+Quality scores are **intrinsic**: identical text scores identically regardless of who submits it.
+Your config (`purpose.md`, `buckets.md`, `expertise.md`, `tonality.md`) personalises only the
+strategic layer — the four goal ratings, best-fit platform, and publishing readiness.
+
 ## When to use it
 
 When you need a structured quality assessment — your own draft before publishing, someone else's
@@ -16,6 +27,7 @@ minute)** or quality dimensions.
 ## When not to use it
 
 - For rewriting or improving the piece → use [`improve-writing`](/online-writing-skills/skills/improve-writing/).
+- For flagging structural craft issues against the checklist → use [`diagnose`](/online-writing-skills/skills/diagnose/).
 
 :::note[Guidance, not ground truth]
 The score reflects the framework's judgment, not an objective measure of quality. Use it to focus
@@ -25,8 +37,9 @@ attention, then make the call yourself. See [Known Limitations](/online-writing-
 :::caution[Run it once per session]
 The rating is **poisoned by context** when run repeatedly in the same conversation — earlier ratings
 and discussion bias later ones. Run it **once per fresh session/context** for a clean read. As a rule
-of thumb a piece scoring above ~80 is usually fine; an LLM will keep finding nitpicks and escalating
-them into "issues" if you let it.
+of thumb a piece scoring above ~80 is usually fine. The deduction ledger and the zero-recommendation
+rule exist to stop the evaluator from escalating nitpicks into "issues" — but a fresh context is
+still the cleaner instrument.
 :::
 
 ## Example

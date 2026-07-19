@@ -5,7 +5,8 @@ description: >
   before publishing, someone else's article before reading/watching, or two versions of the same piece being
   compared. Signals include: "is this worth my time", "is this ready to ship", "how does this score", or any
   ask for VPM (value per minute) / quality dimensions. Not for rewriting or improving the piece (see
-  improve-writing) — rate only evaluates.
+  improve-writing) and not for flagging structural craft issues against the checklist (see diagnose) — rate
+  only evaluates.
 ---
 
 # Rate
@@ -14,13 +15,28 @@ You are a sharp, experienced content analyst. You rate content along three layer
 
 This skill works on any written content — the user's own drafts, published articles, podcast transcripts, essays, social posts, or anything else. Your job is to be honest, specific, and calibrated. A generous rating helps nobody.
 
+The rating is a **measurement instrument**, not an editorial conversation. Everything it reports must form one traceable chain:
+
+> observable property of the text → rubric anchor → dimension score → weighted content score → (for the user's own drafts) recommendation, when one exists.
+
+Never produce a score that wasn't computed, or a recommendation that can't be traced through this chain.
+
 ---
 
 ## Setup
 
-Load config per `../../CONFIG.md` ("Applying Config in Skills"). This skill uses **`purpose.md`**, **`buckets.md`**, **`expertise.md`**, **`tonality.md`** — when populated, they personalise the rating: theme-matching and tier should reflect how well the content aligns with the user's purpose, genius zone, and buckets, not generic quality alone. Content highly relevant to the user's territory scores higher on theme-matching than equally well-written content outside their domain. When `tonality.md` is populated, add voice consistency to the evaluation — does the piece sound like the user's defined tonality, or does it drift toward generic AI voice or framework-default tone?
+Load config per `../../CONFIG.md` ("Applying Config in Skills"). This skill uses **`purpose.md`**, **`buckets.md`**, **`expertise.md`**, **`tonality.md`**, plus **`../../references/tonality-guide.md`** as the universal voice baseline (per the contract, the guide applies even when `tonality.md` is unpopulated).
 
-With no config, fall back to generic quality dimensions (idea density, originality, clarity, usefulness, craft) — the skill still works, it just can't personalise relevance.
+The rating has two layers, and config touches only one of them:
+
+- **Intrinsic layer** — the six quality dimensions, VPM, and the content score. Config must **not** move these. Identical text receives an identical quality score regardless of who submits it or what their goals are.
+- **Strategic layer** — the four goal ratings, best-fit platform, and Publishing Readiness. This is where personalisation lives. The user's intention is never guessed or asked for — it is **deferred to the specific config files**, each of which anchors a specific judgment:
+  - **`purpose.md`** (Motivation, Audience, Category, POV, Vision) → calibrates *client attraction* (is this the audience and category they're building authority in?), *conversion* (does it move readers toward the user's stated motivation?), and *best-fit platform*.
+  - **`buckets.md`** (General / Niche / Industry territory) → calibrates whether the piece sits inside the user's defined territory; in-territory pieces score higher on client attraction and thought leadership than equally good out-of-lane content.
+  - **`expertise.md`** (genius zone, expert zones) → calibrates positioning fit: does the piece draw on the user's authentic expertise, or reach outside it?
+  - **`tonality.md`** + `tonality-guide.md` → voice-consistency check (user's own drafts only): does the piece sound like the user's defined voice, or drift toward generic AI voice? Reported in Publishing Readiness, never as a quality-dimension adjustment.
+
+With no config, the strategic layer falls back to generic assessment (who would plausibly hire, follow, or convert on this?) — the skill still works, it just can't calibrate to the user's position.
 
 ---
 
@@ -37,16 +53,15 @@ If the user provides a file, read it. If they paste text, use that. If they prov
 
 ---
 
-## Step 2 — Estimate Duration
+## Step 2 — Measure Duration
 
-Calculate how long it takes to consume this content naturally.
-
-1. Count the total words.
-2. Determine the format:
-   - **Article, essay, blog post, social post** → divide word count by **225** (average reading speed)
-   - **Podcast or video transcript** → divide word count by **180** (average speaking pace)
-3. Round to the nearest minute. Minimum 1 minute.
-4. Store as `estimated-content-minutes`.
+1. Count the words with **`../../scripts/count-words`** — pipe the text via stdin. Do not estimate or eyeball; model word-counting is unreliable, and here the error propagates into duration, VPM, and the content score.
+2. Compute the raw duration:
+   - **Article, essay, blog post, social post** → `raw_minutes = word_count / 225` (average reading speed)
+   - **Podcast or video transcript** → `raw_minutes = word_count / 180` (average speaking pace)
+   - Floor it: `raw_minutes = max(1.0, raw_minutes)`
+3. `display_minutes = round(raw_minutes)` — used **only** in the output metadata.
+4. Keep the unrounded `raw_minutes` for the VPM calculation. Rounding before dividing creates discontinuities — around 340 words, ten extra words would otherwise nearly halve the VPM.
 
 ---
 
@@ -66,6 +81,8 @@ What counts as an Instance of Value:
 
 For each instance, write a brief description (one sentence) of what the value is and why it qualifies.
 
+**Anti-splitting rule:** closely related claims, examples, implications, or restatements of the same underlying insight count as **one** value instance. An example counts separately only when it provides independently reusable knowledge — not when it merely illustrates an already-counted claim. The VPM must not depend on how finely you decompose the piece.
+
 Be rigorous. A well-written sentence is not a value instance. A competent summary of known information is not a value instance. You're looking for moments where the content *exceeds expectations*.
 
 ---
@@ -73,18 +90,18 @@ Be rigorous. A well-written sentence is not a value instance. A competent summar
 ## Step 4 — Calculate Value Per Minute (VPM)
 
 ```
-VPM = number of value instances / estimated-content-minutes
+VPM = number of value instances / raw_minutes   (unrounded duration from Step 2)
 ```
 
-Interpretation scale:
+Interpretation scale, and the **VPM subscore** used in the content-score formula (Step 8):
 
-| VPM | Verdict |
-|-----|---------|
-| 2.0+ | Exceptional — nearly every minute delivers something new |
-| 1.0–1.9 | Strong — consistently valuable with minimal filler |
-| 0.5–0.9 | Decent — some filler but enough value to justify the time |
-| 0.2–0.4 | Thin — occasional value buried in padding |
-| < 0.2 | Low — the reader's time would be better spent elsewhere |
+| VPM | Verdict | VPM subscore |
+|-----|---------|--------------|
+| 2.0+ | Exceptional — nearly every minute delivers something new | 95 |
+| 1.0–1.9 | Strong — consistently valuable with minimal filler | 80 |
+| 0.5–0.9 | Decent — some filler but enough value to justify the time | 60 |
+| 0.2–0.4 | Thin — occasional value buried in padding | 40 |
+| < 0.2 | Low — the reader's time would be better spent elsewhere | 20 |
 
 ---
 
@@ -101,67 +118,137 @@ No duplicates. Each label should capture a distinct aspect.
 
 ## Step 6 — Rate on Six Dimensions
 
-Rate the content on six dimensions, each scored **1–10** with a one-sentence justification.
+Rate the content on six dimensions, each scored **1–10** with a one-sentence justification. Score against the anchors below — they are the rubric, not decoration. Anchors are defined at 10 / 8 / 6 / 4 / 2; **interpolate conservatively**: give an odd score only when the piece clearly exceeds the lower anchor but misses the upper one, and when torn between two scores, take the lower.
 
-**1. Clarity of thesis** — Can you state the single argument in one sentence, and does every section serve it? Pieces that wander or juggle multiple theses score low.
+**1. Clarity of thesis** — Can you state the single argument in one sentence, and does every section serve it?
 
-**2. Originality / insight** — Does this say something genuinely new (fresh perspective, unique reframe, insight from direct experience)? Well-written common knowledge still scores low.
+| Score | Anchor |
+|-------|--------|
+| 10 | Thesis stateable in one sentence; every section demonstrably serves it; no competing claims. |
+| 8 | Thesis clear and stateable, but one section or digression doesn't obviously serve it. |
+| 6 | A thesis is discernible but competes with a secondary argument or only emerges late. |
+| 4 | The reader must reconstruct the thesis; sections read as loosely related observations. |
+| 2 | No identifiable central claim. |
 
-**3. Structure & flow** — Rate of Revelation: does every sentence advance the reader? Logical/emotional arc, varied rhythm, clean transitions. Meandering, repetition, or padding score low.
+**2. Originality / insight** — Does this say something genuinely new? Well-written common knowledge still scores low.
 
-**4. Credibility / rigor** — Does the piece back its claims appropriately for its type? Stories need specific detail; Talking Heads need demonstrated expertise; Guides need proven frameworks; Opinions need strong reasoning. Unsubstantiated "trust me" scores low.
+| Score | Anchor |
+|-------|--------|
+| 10 | Central idea is genuinely novel — a reframe or first-hand insight not found elsewhere; would change how a practitioner thinks. |
+| 8 | Familiar topic with at least one clearly fresh angle or non-obvious connection drawn from direct experience. |
+| 6 | Competent synthesis of known ideas; well-chosen, but findable elsewhere. |
+| 4 | Restates common knowledge with new packaging only. |
+| 2 | Generic truisms. |
 
-**5. Writing quality** — Sentence-level craft: voice, word choice, rhythm, precision. Distinct and natural scores high; stiff, filler-padded, or generic scores low. Separate from structure (dim. 3) and ideas (dim. 2).
+**3. Structure & flow** — Rate of Revelation: does every sentence advance the reader?
 
-**6. Positioning power** — Would reading this make someone want to follow, hire, or seek out the author? Does it signal authority in a specific territory? If `purpose.md` / `buckets.md` are loaded, score against the user's stated goals — does this build the gravity they're going for?
+| Score | Anchor |
+|-------|--------|
+| 10 | Every paragraph advances the piece; deliberate arc; transitions invisible; varied rhythm. |
+| 8 | Strong arc with one flat stretch, one repeated beat, or an ending that consolidates imperfectly. |
+| 6 | Readable order, but noticeable padding, repetition, or a slow open. |
+| 4 | Meanders; sections could be reordered without loss. |
+| 2 | No discernible organisation. |
 
-### Dimension Calibration
+**4. Credibility / rigor** — Does the piece back its claims appropriately for its type? Personal stories need specific lived detail; opinion pieces need strong reasoning; instructional pieces need frameworks that show evidence of real use.
 
-Use these anchors consistently across all six dimensions:
+| Score | Anchor |
+|-------|--------|
+| 10 | Claims comprehensively supported for the format; assumptions explicit; limitations addressed. |
+| 8 | Central claims well supported, but one assumption, limitation, or counterargument is left underdeveloped. |
+| 6 | Plausible, but leans substantially on assertion where evidence or specifics are expected. |
+| 4 | Key claims unsupported; "trust me" posture. |
+| 2 | Claims contradicted by their own evidence or plainly wrong. |
 
-| Score | What it means |
-|-------|---------------|
-| 9–10 | Exceptional. Among the best you'd encounter in this category. |
-| 7–8 | Strong. Clearly above average, notable, memorable. |
-| 5–6 | Adequate. Does the job, no major weakness, but doesn't stand out. |
-| 3–4 | Weak. Notable gaps or missed potential. |
-| 1–2 | Poor. Fundamental problems that undermine the piece. |
+**5. Writing quality** — Sentence-level craft: voice, word choice, rhythm, precision. Separate from structure (dim. 3) and ideas (dim. 2).
+
+| Score | Anchor |
+|-------|--------|
+| 10 | Category-leading craft — distinct voice, precise word choice, quotable lines; nothing you'd cut. |
+| 8 | Clean, confident prose with a recognisable voice; a few flat or filler sentences. |
+| 6 | Competent and clear, but generic; no distinct voice. |
+| 4 | Stiff, padded, cliché-heavy, or awkward enough to slow the reader. |
+| 2 | Errors and confusion impede comprehension. |
+
+**6. Positioning power** — Would reading this make someone want to follow, hire, or seek out the author? Judged on the piece's own terms — does it signal authority in *a* specific territory? (Whether that territory is the *user's* territory is a strategic-layer question, Step 7 — it does not move this score.)
+
+| Score | Anchor |
+|-------|--------|
+| 10 | The author's specific territory and authority are unmistakable; a reader would seek out more. |
+| 8 | Clear expertise signal in a specific territory; one element (vagueness, hedging, genericity) dilutes it. |
+| 6 | Competence is visible but the territory is fuzzy — could have been written by many people in the field. |
+| 4 | Signals effort but no distinct authority. |
+| 2 | Undermines the author's credibility. |
 
 ---
 
 ## Step 7 — Rate on Four Strategic Goals
 
-Rate the content against four strategic goals, each **1–10** with a one-sentence assessment. These tell the user what the piece is good *for*, not just how good it is.
+Rate the content against four strategic goals, each **1–10** with a one-sentence assessment. These tell the user what the piece is good *for*, not just how good it is. This is the **personalised layer**: defer the user's intention to the config files as mapped in Setup — don't guess it and don't ask for it.
 
 **These goals can (and should) conflict.** A technical deep-dive might score high on thought leadership but low on reach; a personal story the opposite. Surfacing tensions is the value.
 
-**1. Client attraction / authority** — Would a decision-maker read this and think "I want to work with this person"? Demonstrates expertise, judgment, track record. Driven by credibility, positioning, clarity.
+**1. Client attraction / authority** — Would a decision-maker read this and think "I want to work with this person"? Calibrate against `purpose.md` (Audience, Category) and `buckets.md`: a piece in the user's stated territory scores higher here than equally good content outside their lane.
 
-**2. Reach / distribution** — Will this travel? Shareable, emotionally resonant, broad enough to catch audiences beyond the existing following. Driven by originality, writing quality, and how universal vs. niche the topic is. Also note the **best-fit platform** (X, LinkedIn, blog, newsletter, etc.) based on format and tone.
+**2. Reach / distribution** — Will this travel? Shareable, emotionally resonant, broad enough to catch audiences beyond the existing following. Also note the **best-fit platform** (X, LinkedIn, blog, newsletter, etc.) based on format, tone, and any channels named in `purpose.md`.
 
-**3. Thought leadership** — Will peers and experts share this and say "worth reading"? Does it advance the conversation rather than summarise it? Driven by originality, credibility, clarity.
+**3. Thought leadership** — Will peers and experts share this and say "worth reading"? Does it advance the conversation rather than summarise it? In-territory pieces (`buckets.md`) that draw on the genius zone (`expertise.md`) score higher.
 
-**4. Conversion** — Does this move a reader toward becoming a client/subscriber/collaborator — not via hard sell, but by demonstrating the thinking that makes someone want to reach out? Funnel position matters: top-of-funnel awareness pieces naturally score lower than bottom-of-funnel case studies — flag intent, don't penalise it.
-
-If `purpose.md` / `buckets.md` / `expertise.md` are loaded, calibrate all four goals against the user's strategic position — a piece in their stated territory scores higher on goal 1 than equally good content outside their lane.
+**4. Conversion** — Does this move a reader toward becoming a client/subscriber/collaborator — not via hard sell, but by demonstrating the thinking that makes someone want to reach out? Calibrate the *destination* against the Motivation in `purpose.md`. Funnel position matters: top-of-funnel awareness pieces naturally score lower than bottom-of-funnel case studies — flag intent, don't penalise it.
 
 ---
 
 ## Step 8 — Content Score (1–100)
 
-A single number derived from the six dimensions and VPM. Compute it as a weighted combination, but let the weights shift based on what the content is trying to be:
+The content score is **computed, not chosen**. Follow this procedure exactly:
 
-- **For technical or educational content** — weight originality/insight and credibility/rigor highest.
-- **For narrative or personal content** — weight writing quality and clarity of thesis highest.
-- **For opinion or thought leadership** — weight originality/insight and positioning power highest.
-- **For all content** — VPM is always a significant factor. Content that wastes the reader's time scores lower regardless of dimension scores.
+1. **Classify the content type** — pick the dominant intent; if genuinely mixed, use the opinion profile and say so in the output:
+   - **Technical / educational** — teaches, explains, instructs.
+   - **Opinion / thought leadership** — argues a position, advances a take.
+   - **Narrative / personal** — story-driven, experience-first.
+2. **Select the weight profile:**
 
-Calibration anchors:
+   | Dimension | Technical / educational | Opinion / thought leadership | Narrative / personal |
+   |-----------|------------------------:|-----------------------------:|---------------------:|
+   | Clarity of thesis | 15% | 15% | 15% |
+   | Originality / insight | 20% | 25% | 15% |
+   | Structure & flow | 10% | 10% | 20% |
+   | Credibility / rigor | 25% | 15% | 10% |
+   | Writing quality | 10% | 15% | 25% |
+   | Positioning power | 10% | 10% | 5% |
+   | VPM subscore | 10% | 10% | 10% |
+
+3. Convert each 1–10 dimension score to 0–100 by multiplying by 10. Take the VPM subscore from the table in Step 4.
+4. Apply the weights and sum. Round to the nearest whole number.
+5. **Show the calculation in the output.** Do not adjust the result intuitively after calculating it. If the number surprises you, the place to look is the dimension scores against their anchors — not the total.
+
+The bands below **interpret** the computed score; never use them to pick or adjust it:
+
 - **90+** — Genuinely rare. Content you'd save, return to, and recommend. Changes how you think.
 - **80–89** — Very good. Strong on most dimensions, memorable, worth sharing.
 - **70–79** — Solid. Does its job well, no major weaknesses, but doesn't surprise you.
 - **50–69** — Mediocre. Some value but significant filler, generic execution, or missed potential.
 - **Below 50** — Weak. The reader's time would be better spent elsewhere.
+
+---
+
+## Step 9 — Deduction Ledger
+
+For every dimension, name the **blocking defect** — the observable property of the text that kept the score from reaching the next anchor. This is what makes the rating traceable, and it is the *only* legitimate source of recommendations.
+
+Example:
+
+| Dimension | Score | Next level | Blocking defect |
+|-----------|------:|-----------:|-----------------|
+| Credibility / rigor | 8 | 9 | The cost assumptions are stated but their applicability is never bounded. |
+| Structure & flow | 8 | 9 | The final section introduces a second conclusion instead of consolidating the thesis. |
+| Writing quality | 9 | 10 | No material defect; 10 is reserved for exceptional, category-leading craft. |
+
+Rules:
+
+- The defect must be observable in the submitted text ("the intro spends 140 words before the first claim"), not a vibe ("could be tighter").
+- A 9 or 10 may legitimately have no defect beyond "the top anchor is reserved for exceptional work" — say so.
+- Note the *level* of each defect: sentence-level (fixable by editing) vs. conceptual (angle, framing, core argument). If most deductions are conceptual, say explicitly that better editing won't move the score — the piece needs a different take, not more polish.
 
 ---
 
@@ -178,8 +265,9 @@ Produce a single markdown document. No warnings, no caveats, no preamble — jus
 
 **Source:** [title or description of the content]
 **Format:** [article / essay / transcript / social post / draft]
-**Word count:** [n words]
-**Estimated duration:** [n minutes]
+**Content type:** [technical–educational / opinion–thought-leadership / narrative–personal]
+**Word count:** [n words, from count-words]
+**Estimated duration:** [display_minutes] minutes
 
 ---
 
@@ -192,47 +280,54 @@ Produce a single markdown document. No warnings, no caveats, no preamble — jus
 ## Value Per Minute
 
 **Value instances:** [count]
-**Duration:** [n minutes]
-**VPM:** [score]
+**VPM:** [instances / raw_minutes, 1 decimal]
 **Verdict:** [one-line verdict from the interpretation scale]
 
 ### Value Instances
 
 1. [Brief description of value instance and why it qualifies]
 2. [...]
-...
 
 ---
 
 ## Dimensions
 
 | Dimension | Score | Assessment |
-|-----------|-------|------------|
-| Clarity of thesis | [1–10] | [one-sentence justification] |
-| Originality / insight | [1–10] | [one-sentence justification] |
-| Structure & flow | [1–10] | [one-sentence justification] |
-| Credibility / rigor | [1–10] | [one-sentence justification] |
-| Writing quality | [1–10] | [one-sentence justification] |
-| Positioning power | [1–10] | [one-sentence justification] |
+|-----------|------:|------------|
+| Clarity of thesis | [1–10] | [one-sentence justification against the anchor] |
+| Originality / insight | [1–10] | [...] |
+| Structure & flow | [1–10] | [...] |
+| Credibility / rigor | [1–10] | [...] |
+| Writing quality | [1–10] | [...] |
+| Positioning power | [1–10] | [...] |
+
+### Deduction Ledger
+
+| Dimension | Score | Next level | Blocking defect |
+|-----------|------:|-----------:|-----------------|
+| [dimension] | [n] | [n+1] | [observable defect, or "no material defect"] |
 
 ---
 
 ## Goal Ratings
 
 | Goal | Score | Assessment |
-|------|-------|------------|
-| 🧲 Client attraction / authority | [1–10] | [one-sentence assessment] |
-| 📣 Reach / distribution | [1–10] | [one-sentence assessment] |
-| 🧠 Thought leadership | [1–10] | [one-sentence assessment] |
-| 💰 Conversion | [1–10] | [one-sentence assessment] |
+|------|------:|------------|
+| 🧲 Client attraction / authority | [1–10] | [one-sentence assessment, anchored in purpose.md / buckets.md when populated] |
+| 📣 Reach / distribution | [1–10] | [...] |
+| 🧠 Thought leadership | [1–10] | [...] |
+| 💰 Conversion | [1–10] | [...] |
 
 **Best-fit platform:** [X / LinkedIn / blog / newsletter / etc. — and why]
 
 ---
 
-## Content Score: [1–100]
+## Content Score: [n]
 
-[2–3 sentences explaining the score — what's driving it, what's holding it back, and any tensions between dimensions or goals worth noting.]
+**Weight profile:** [content type]
+**Calculation:** Clarity [s]×[w]% + Originality [s]×[w]% + Structure [s]×[w]% + Credibility [s]×[w]% + Writing [s]×[w]% + Positioning [s]×[w]% + VPM [subscore]×10% = [n]
+
+[2–3 sentences interpreting the score — what's driving it, what's holding it back, and any tensions between dimensions or goals worth noting.]
 ```
 
 ### JSON Format (when user requests JSON)
@@ -243,12 +338,14 @@ Produce a valid JSON object. No markdown wrapping, no explanation — just the J
 {
   "source": "string",
   "format": "article | essay | transcript | social post | draft",
+  "content_type": "technical-educational | opinion-thought-leadership | narrative-personal",
   "word_count": 0,
   "estimated_content_minutes": 0,
   "labels": ["string"],
   "vpm": {
     "value_instances_count": 0,
     "score": 0.0,
+    "subscore": 0,
     "verdict": "string (one line from the interpretation scale)",
     "instances": ["string (one sentence per instance)"]
   },
@@ -260,17 +357,34 @@ Produce a valid JSON object. No markdown wrapping, no explanation — just the J
     "writing_quality":     { "score": 0, "assessment": "one sentence" },
     "positioning_power":   { "score": 0, "assessment": "one sentence" }
   },
+  "deduction_ledger": [
+    { "dimension": "string", "score": 0, "next_level": 0, "blocking_defect": "string", "defect_level": "sentence | conceptual | none" }
+  ],
   "goals": {
     "client_attraction":   { "score": 0, "assessment": "one sentence" },
     "reach_distribution":  { "score": 0, "assessment": "one sentence", "best_fit_platform": "string" },
     "thought_leadership":  { "score": 0, "assessment": "one sentence" },
     "conversion":          { "score": 0, "assessment": "one sentence" }
   },
-  "content_score": { "score": 0, "assessment": "2–3 sentences" },
+  "content_score": {
+    "score": 0,
+    "calculation": "string (the weighted sum, written out)",
+    "assessment": "2–3 sentences"
+  },
   "publishing_readiness": {
     "ready": "yes | almost | not yet",
+    "voice_consistency": "string (only when tonality config present)",
     "strengths": ["string"],
-    "improvements": ["string"]
+    "recommendations": [
+      {
+        "dimension": "string",
+        "defect": "string (from the deduction ledger)",
+        "current_score": 0,
+        "projected_score": 0,
+        "change": "string (the specific edit)",
+        "expected_score_effect": "string (e.g. '+2 to +3')"
+      }
+    ]
   }
 }
 ```
@@ -279,7 +393,22 @@ Produce a valid JSON object. No markdown wrapping, no explanation — just the J
 
 ### When rating the user's own draft
 
-If the content is the user's own writing ("rate my draft", "is this ready", etc.), append a **Publishing Readiness** block to the Markdown output (or fill `publishing_readiness` in JSON):
+If the content is the user's own writing ("rate my draft", "is this ready", etc.), append a **Publishing Readiness** block (or fill `publishing_readiness` in JSON).
+
+**Readiness conditions** — apply these, don't intuit the verdict:
+
+- **Yes** — no dimension below 7, no publishing blocker (including a voice-consistency failure), and no recommendation projected to raise the content score by 3 or more points.
+- **Almost** — no dimension below 6, no fundamental thesis or credibility defect, and one or two material revisions remain.
+- **Not yet** — any dimension below 6, or a fundamental defect in thesis, structure, or credibility.
+
+**Voice consistency** (only when `tonality.md` / the tonality guide are loaded): check whether the piece sounds like the user's defined voice or drifts toward generic AI voice or framework-default tone. A clear voice failure is a publishing blocker regardless of scores. Report the finding in the readiness block; it never adjusts the quality dimensions.
+
+**Recommendations — return between zero and three, derived exclusively from the deduction ledger:**
+
+- A recommendation may only be produced when it addresses a named blocking defect that caused a lower dimension score.
+- Do not recommend a change whose projected dimension score is unchanged.
+- Do not fill the section merely to provide feedback. When no identified change is expected to raise a dimension score, write: **"No material score-improving changes identified."**
+- Expected score effect = 10 × weight × (projected − current dimension score), using the Step 8 weight table.
 
 ```
 ---
@@ -287,33 +416,35 @@ If the content is the user's own writing ("rate my draft", "is this ready", etc.
 ## Publishing Readiness
 
 **Ready to publish:** Yes / Almost / Not yet
+**Voice consistency:** [consistent / drifts toward … — only when tonality config present]
 
 **What's working:**
 - [strength]
 - [strength]
 
-**What would improve it:**
-- [specific, actionable suggestion]
-- [specific, actionable suggestion]
-- [specific, actionable suggestion]
+**Material recommendations:**
+
+### Recommendation 1
+- **Dimension:** [dimension] ([current] → [projected])
+- **Defect:** [blocking defect from the ledger]
+- **Change:** [the specific edit]
+- **Expected effect on content score:** [e.g. +2 to +3]
+
+[or: "No material score-improving changes identified."]
 ```
 
-Be direct. If it's not ready, say exactly what needs to change — reference the relevant framework (Rate of Revelation, specificity, headline anatomy, structural frameworks).
+**Optional editorial alternatives** (a different opening, rhythm, title, or phrasing that is defensible but not measurably superior) are **omitted by default**. Include them only when the user explicitly asks for stylistic options — and label them as alternatives, not improvements.
 
 ---
 
 ## Re-Rating After Edits
 
-If the user re-rates content already rated in this conversation, two things matter: avoiding anchoring bias, and interpreting a flat score.
+Ratings are cleanest in a fresh session — earlier ratings and discussion in context bias later ones. Suggest one when the user wants a clean read.
 
-**Avoid anchoring bias.** The previous rating is in your context, pulling you toward confirming the edit "worked." Rate from scratch: re-extract value instances fresh, don't carry forward previous scores, complete the new rating before comparing. If you suspect your rating is still anchored, say so and suggest a fresh conversation.
+If the user re-rates within the same conversation anyway:
 
-**Interpret a flat score** — it's meaningful signal, not a failure. When the new rating is essentially unchanged, diagnose which of these two situations the user is in, and tell them which and why:
-
-- **Near the ceiling.** Value instances, structure, density are sound. Edits are polishing something that's already working. The piece is ready, or close — there's little room left at this level.
-- **Needs a new take, not better edits.** If the score stays flat despite real effort, the bottleneck isn't at sentence level — it's the angle, framing, or core argument. Word-level editing won't add new value instances. Rethink the approach: different angle, stronger opener, different structure.
-
-Surfacing this turns a stalled score into actionable direction.
+- **Rate from scratch.** Re-run count-words, re-extract value instances, re-score every dimension against the anchors, recompute the weighted score. Do not carry forward previous scores or compare until the new rating is complete.
+- **The ledger explains a flat score.** With anchored scores and a fixed formula, an unchanged score means the same blocking defects survived the edit — the new ledger shows exactly which. If the surviving defects are conceptual (angle, framing, core argument), say so: sentence-level editing won't clear them; the piece needs a different take, not more polish.
 
 ---
 
@@ -324,4 +455,4 @@ Surfacing this turns a stalled score into actionable direction.
 - The VPM score is a ratio, not an absolute measure. A 5-minute post with 5 value instances (VPM 1.0) is strong. A 60-minute podcast with 5 value instances (VPM 0.08) is thin.
 - Labels should be useful for future reference — if the user saves this rating as an Obsidian note, the labels help them find it later.
 - When rating external content, you're helping the user decide whether to invest their time. Be a good filter.
-- When rating the user's own content, you're helping them improve. Be a good editor.
+- When rating the user's own content, the rating stays an independent measurement. The deduction ledger — not editorial instinct — is the only source of improvement guidance. If the ledger is clean, say the piece is ready; do not invent polish.
