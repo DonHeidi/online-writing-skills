@@ -19,7 +19,7 @@ This folder lives at the vault root, **not** inside the skills directory. Skills
 ### `purpose.md`
 
 **Created by:** discover-purpose
-**Read by:** ideate, create-post, create-draft, improve-writing
+**Read by:** ideate, create-post, create-draft, improve-writing, rate
 
 Contains the user's writing purpose — their motivation, audience, category, POV, style, and vision. Used by other skills to align ideas, voice, and framing with the user's goals.
 
@@ -54,7 +54,7 @@ Use this to evaluate future writing choices:
 ### `expertise.md`
 
 **Created by:** discover-buckets
-**Read by:** discover-buckets, ideate
+**Read by:** discover-buckets, ideate, rate
 
 Contains the user's full list of expert zones — all the skills, experiences, industries, hobbies, and perspectives they bring to their writing. This is the raw material from which the genius zone and content buckets are derived.
 
@@ -87,7 +87,7 @@ Contains the user's full list of expert zones — all the skills, experiences, i
 ### `buckets.md`
 
 **Created by:** discover-buckets
-**Read by:** ideate, create-post, create-draft, improve-writing
+**Read by:** ideate, create-post, create-draft, improve-writing, rate
 
 Contains the user's three content buckets — audience-level categories with specific topics under each. Used by other skills to align ideation and writing with the user's content territory.
 

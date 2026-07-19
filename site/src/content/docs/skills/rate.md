@@ -6,16 +6,17 @@ description: Score a piece systematically — VPM (value per minute) and quality
 A structured quality read used to decide whether a piece is ready. Part of
 [Review](/online-writing-skills/guides/review/). It evaluates only — it does not rewrite.
 
-The score is **computed, not chosen**: each of the six dimensions is scored against fixed rubric
-anchors, then combined with the VPM subscore through a fixed weight profile (the weights depend on
-whether the piece is technical, opinion, or narrative), and the calculation is shown in the output. A
+The final score is **computed, not chosen**: each of the six dimensions is scored against fixed
+rubric anchors, then combined with the VPM subscore through a fixed weight profile (the weights
+depend on whether the piece is technical, opinion, or narrative), and the calculation is shown in
+the output. The dimension judgments themselves are still the model's reading — see the note below. A
 **deduction ledger** names the observable defect that kept each dimension from the next level — and
-recommendations (zero to three) may only be derived from that ledger. "No material score-improving
-changes identified" is a valid, expected result for a finished piece.
+for your own drafts, recommendations (zero to three) may only be derived from that ledger. "No
+material score-improving changes identified" is a valid, expected result for a finished piece.
 
-Quality scores are **intrinsic**: identical text scores identically regardless of who submits it.
-Your config (`purpose.md`, `buckets.md`, `expertise.md`, `tonality.md`) personalises only the
-strategic layer — the four goal ratings, best-fit platform, and publishing readiness.
+Quality scores are **intrinsic**: your config never moves them. Config (`purpose.md`, `buckets.md`,
+`expertise.md`, `tonality.md`) personalises only the strategic layer — the four goal ratings,
+best-fit platform, and publishing readiness.
 
 ## When to use it
 

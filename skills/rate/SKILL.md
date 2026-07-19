@@ -1,7 +1,7 @@
 ---
 name: rate
 description: >
-  Use when the user needs an objective quality assessment of a written or transcribed piece — their own draft
+  Use when the user needs a structured quality assessment of a written or transcribed piece — their own draft
   before publishing, someone else's article before reading/watching, or two versions of the same piece being
   compared. Signals include: "is this worth my time", "is this ready to ship", "how does this score", or any
   ask for VPM (value per minute) / quality dimensions. Not for rewriting or improving the piece (see
@@ -15,11 +15,11 @@ You are a sharp, experienced content analyst. You rate content along three layer
 
 This skill works on any written content — the user's own drafts, published articles, podcast transcripts, essays, social posts, or anything else. Your job is to be honest, specific, and calibrated. A generous rating helps nobody.
 
-The rating is a **measurement instrument**, not an editorial conversation. Everything it reports must form one traceable chain:
+The rating is a **measurement instrument**, not an editorial conversation. Every quality score, deduction, and recommendation must form one traceable chain:
 
 > observable property of the text → rubric anchor → dimension score → weighted content score → (for the user's own drafts) recommendation, when one exists.
 
-Never produce a score that wasn't computed, or a recommendation that can't be traced through this chain.
+Never produce a quality score that wasn't computed, or a recommendation that can't be traced through this chain. (The strategic goal ratings in Step 7 are calibrated judgments against the config files, not anchor-scored; labels are metadata. The chain governs the intrinsic layer.)
 
 ---
 
@@ -29,9 +29,9 @@ Load config per `../../CONFIG.md` ("Applying Config in Skills"). This skill uses
 
 The rating has two layers, and config touches only one of them:
 
-- **Intrinsic layer** — the six quality dimensions, VPM, and the content score. Config must **not** move these. Identical text receives an identical quality score regardless of who submits it or what their goals are.
+- **Intrinsic layer** — the six quality dimensions, VPM, and the content score. Config must **not** move these. The same text must never score differently because of who submitted it or what their goals are.
 - **Strategic layer** — the four goal ratings, best-fit platform, and Publishing Readiness. This is where personalisation lives. The user's intention is never guessed or asked for — it is **deferred to the specific config files**, each of which anchors a specific judgment:
-  - **`purpose.md`** (Motivation, Audience, Category, POV, Vision) → calibrates *client attraction* (is this the audience and category they're building authority in?), *conversion* (does it move readers toward the user's stated motivation?), and *best-fit platform*.
+  - **`purpose.md`** (Motivation, Audience, Category, POV, Style, Vision) → calibrates *client attraction* (is this the audience and category they're building authority in?), *conversion* (does it move readers toward the user's stated motivation?), and *best-fit platform*.
   - **`buckets.md`** (General / Niche / Industry territory) → calibrates whether the piece sits inside the user's defined territory; in-territory pieces score higher on client attraction and thought leadership than equally good out-of-lane content.
   - **`expertise.md`** (genius zone, expert zones) → calibrates positioning fit: does the piece draw on the user's authentic expertise, or reach outside it?
   - **`tonality.md`** + `tonality-guide.md` → voice-consistency check (user's own drafts only): does the piece sound like the user's defined voice, or drift toward generic AI voice? Reported in Publishing Readiness, never as a quality-dimension adjustment.
@@ -92,6 +92,8 @@ Be rigorous. A well-written sentence is not a value instance. A competent summar
 ```
 VPM = number of value instances / raw_minutes   (unrounded duration from Step 2)
 ```
+
+Round the VPM to one decimal, then read the band below — the bands are contiguous at one-decimal precision.
 
 Interpretation scale, and the **VPM subscore** used in the content-score formula (Step 8):
 
@@ -238,17 +240,17 @@ For every dimension, name the **blocking defect** — the observable property of
 
 Example:
 
-| Dimension | Score | Next level | Blocking defect |
-|-----------|------:|-----------:|-----------------|
-| Credibility / rigor | 8 | 9 | The cost assumptions are stated but their applicability is never bounded. |
-| Structure & flow | 8 | 9 | The final section introduces a second conclusion instead of consolidating the thesis. |
-| Writing quality | 9 | 10 | No material defect; 10 is reserved for exceptional, category-leading craft. |
+| Dimension | Score | Next level | Blocking defect | Level |
+|-----------|------:|-----------:|-----------------|-------|
+| Credibility / rigor | 8 | 9 | The cost assumptions are stated but their applicability is never bounded. | sentence |
+| Structure & flow | 8 | 9 | The final section introduces a second conclusion instead of consolidating the thesis. | conceptual |
+| Writing quality | 9 | 10 | No material defect; 10 is reserved for exceptional, category-leading craft. | none |
 
 Rules:
 
 - The defect must be observable in the submitted text ("the intro spends 140 words before the first claim"), not a vibe ("could be tighter").
 - A 9 or 10 may legitimately have no defect beyond "the top anchor is reserved for exceptional work" — say so.
-- Note the *level* of each defect: sentence-level (fixable by editing) vs. conceptual (angle, framing, core argument). If most deductions are conceptual, say explicitly that better editing won't move the score — the piece needs a different take, not more polish.
+- The **Level** column classifies each defect: `sentence` (fixable by editing), `conceptual` (angle, framing, core argument), or `none`. If most deductions are conceptual, say explicitly that better editing won't move the score — the piece needs a different take, not more polish.
 
 ---
 
@@ -264,7 +266,7 @@ Produce a single markdown document. No warnings, no caveats, no preamble — jus
 # Content Rating
 
 **Source:** [title or description of the content]
-**Format:** [article / essay / transcript / social post / draft]
+**Format:** [article / essay / transcript / social post / thread / draft]
 **Content type:** [technical–educational / opinion–thought-leadership / narrative–personal]
 **Word count:** [n words, from count-words]
 **Estimated duration:** [display_minutes] minutes
@@ -303,9 +305,9 @@ Produce a single markdown document. No warnings, no caveats, no preamble — jus
 
 ### Deduction Ledger
 
-| Dimension | Score | Next level | Blocking defect |
-|-----------|------:|-----------:|-----------------|
-| [dimension] | [n] | [n+1] | [observable defect, or "no material defect"] |
+| Dimension | Score | Next level | Blocking defect | Level |
+|-----------|------:|-----------:|-----------------|-------|
+| [dimension] | [n] | [n+1] | [observable defect, or "no material defect"] | [sentence / conceptual / none] |
 
 ---
 
@@ -325,7 +327,8 @@ Produce a single markdown document. No warnings, no caveats, no preamble — jus
 ## Content Score: [n]
 
 **Weight profile:** [content type]
-**Calculation:** Clarity [s]×[w]% + Originality [s]×[w]% + Structure [s]×[w]% + Credibility [s]×[w]% + Writing [s]×[w]% + Positioning [s]×[w]% + VPM [subscore]×10% = [n]
+**Calculation:** Clarity [s×10]×[w]% + Originality [s×10]×[w]% + Structure [s×10]×[w]% + Credibility [s×10]×[w]% + Writing [s×10]×[w]% + Positioning [s×10]×[w]% + VPM [subscore]×10% = [n]
+(each dimension term uses the 0–100 converted score from Step 8.3, e.g. a dimension scored 8 appears as 80×15%)
 
 [2–3 sentences interpreting the score — what's driving it, what's holding it back, and any tensions between dimensions or goals worth noting.]
 ```
@@ -337,7 +340,7 @@ Produce a valid JSON object. No markdown wrapping, no explanation — just the J
 ```json
 {
   "source": "string",
-  "format": "article | essay | transcript | social post | draft",
+  "format": "article | essay | transcript | social post | thread | draft",
   "content_type": "technical-educational | opinion-thought-leadership | narrative-personal",
   "word_count": 0,
   "estimated_content_minutes": 0,
@@ -373,7 +376,7 @@ Produce a valid JSON object. No markdown wrapping, no explanation — just the J
   },
   "publishing_readiness": {
     "ready": "yes | almost | not yet",
-    "voice_consistency": "string (only when tonality config present)",
+    "voice_consistency": "string (own drafts only; always run — the tonality guide is the baseline even when tonality.md is unpopulated)",
     "strengths": ["string"],
     "recommendations": [
       {
@@ -382,7 +385,7 @@ Produce a valid JSON object. No markdown wrapping, no explanation — just the J
         "current_score": 0,
         "projected_score": 0,
         "change": "string (the specific edit)",
-        "expected_score_effect": "string (e.g. '+2 to +3')"
+        "expected_score_effect": "string (the computed value, e.g. '+2.5')"
       }
     ]
   }
@@ -395,20 +398,21 @@ Produce a valid JSON object. No markdown wrapping, no explanation — just the J
 
 If the content is the user's own writing ("rate my draft", "is this ready", etc.), append a **Publishing Readiness** block (or fill `publishing_readiness` in JSON).
 
-**Readiness conditions** — apply these, don't intuit the verdict:
+**Readiness conditions** — evaluate top-down, first match wins; don't intuit the verdict:
 
-- **Yes** — no dimension below 7, no publishing blocker (including a voice-consistency failure), and no recommendation projected to raise the content score by 3 or more points.
-- **Almost** — no dimension below 6, no fundamental thesis or credibility defect, and one or two material revisions remain.
-- **Not yet** — any dimension below 6, or a fundamental defect in thesis, structure, or credibility.
+1. **Not yet** — any dimension below 6, a fundamental defect in thesis, structure, or credibility, or a clear voice-consistency failure.
+2. **Yes** — no dimension below 7 and no recommendation with an expected score effect of 3 or more points.
+3. **Almost** — everything else: the piece clears the Not-yet bar, but material revisions remain.
 
-**Voice consistency** (only when `tonality.md` / the tonality guide are loaded): check whether the piece sounds like the user's defined voice or drifts toward generic AI voice or framework-default tone. A clear voice failure is a publishing blocker regardless of scores. Report the finding in the readiness block; it never adjusts the quality dimensions.
+**Voice consistency** — always run this check for the user's own drafts: compare against `tonality.md` when populated, with `tonality-guide.md` as the baseline otherwise (per `CONFIG.md`, the guide applies even when `tonality.md` is unpopulated). Does the piece sound like the user's defined voice, or drift toward generic AI voice or framework-default tone? A clear voice failure means **Not yet** regardless of scores. Report the finding in the readiness block; it never adjusts the quality dimensions.
 
 **Recommendations — return between zero and three, derived exclusively from the deduction ledger:**
 
 - A recommendation may only be produced when it addresses a named blocking defect that caused a lower dimension score.
 - Do not recommend a change whose projected dimension score is unchanged.
 - Do not fill the section merely to provide feedback. When no identified change is expected to raise a dimension score, write: **"No material score-improving changes identified."**
-- Expected score effect = 10 × weight × (projected − current dimension score), using the Step 8 weight table.
+- Expected score effect = 10 × weight × (projected − current dimension score), using the Step 8 weight table. Report the computed value (it may be fractional, e.g. +2.5); it is compared as-is against the 3-point threshold in the readiness conditions.
+- The **"What's working"** list must trace too: each strength cites the dimension(s) scoring 8+ (or ledger rows with no material defect) it comes from. Don't invent praise the scores don't back.
 
 ```
 ---
@@ -416,11 +420,11 @@ If the content is the user's own writing ("rate my draft", "is this ready", etc.
 ## Publishing Readiness
 
 **Ready to publish:** Yes / Almost / Not yet
-**Voice consistency:** [consistent / drifts toward … — only when tonality config present]
+**Voice consistency:** [consistent / drifts toward …]
 
 **What's working:**
-- [strength]
-- [strength]
+- [strength — citing the dimension(s) it comes from]
+- [strength — citing the dimension(s) it comes from]
 
 **Material recommendations:**
 
@@ -428,7 +432,7 @@ If the content is the user's own writing ("rate my draft", "is this ready", etc.
 - **Dimension:** [dimension] ([current] → [projected])
 - **Defect:** [blocking defect from the ledger]
 - **Change:** [the specific edit]
-- **Expected effect on content score:** [e.g. +2 to +3]
+- **Expected effect on content score:** [computed value, e.g. +2.5]
 
 [or: "No material score-improving changes identified."]
 ```
