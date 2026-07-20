@@ -4,7 +4,7 @@ This file provides guidance to AI coding agents (Claude Code, Codex, and others)
 
 ## What this repository is
 
-This is **not a software application** — it is a distributable collection of AI-agent *skills* for online writing, plus a docs site. There is no skill runtime, build step, or test suite for the skills themselves; a skill is a Markdown file (`SKILL.md`) of instructions an agent loads and follows. "Code" here means skill prose, a few helper scripts, plugin manifests, and an Astro docs site.
+This is **not a software application** — it is a distributable collection of AI-agent *skills* for online writing, plus a docs site. There is no skill runtime or build step; a skill is a Markdown file (`SKILL.md`) of instructions an agent loads and follows. "Code" here means skill prose, a few helper scripts, plugin manifests, and an Astro docs site. The only automated checks are the `rate`-skill eval harness under `tests/` (see Commands and `tests/README.md`).
 
 ## Commands
 
@@ -13,6 +13,12 @@ The only executable pieces are the word-count script and the docs site.
 ```sh
 # Word counting (used by skills; also runnable directly)
 cat draft.md | scripts/count-words        # prints a single integer
+
+# Rate-skill eval harness (see tests/README.md)
+tests/validate_rating.py rating.json tests/fixtures/strong-draft.md   # mechanical checks on one rating JSON
+tests/rate_eval.py --fixture tests/fixtures/strong-draft.md --runs 3  # headless runs + variance report (claude CLI, costs tokens)
+# validate_rating.py mirrors SKILL.md's weight profiles, VPM bands, and
+# readiness tiers — change them together in the same commit.
 
 # Docs site (Astro Starlight), from site/
 cd site
