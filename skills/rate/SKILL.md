@@ -224,13 +224,13 @@ The content score is **computed, not chosen**. Follow this procedure exactly:
 4. Apply the weights and sum. Round to the nearest whole number.
 5. **Show the calculation in the output.** Do not adjust the result intuitively after calculating it. If the number surprises you, the place to look is the dimension scores against their anchors — not the total.
 
-The bands below **interpret** the computed score; never use them to pick or adjust it:
+The bands below **interpret** the computed score; never use them to pick or adjust it. Print the band label next to the number in the output (e.g. `86 — Very good`), so the reader gets the signal, not just the figure:
 
-- **90+** — Genuinely rare. Content you'd save, return to, and recommend. Changes how you think.
-- **80–89** — Very good. Strong on most dimensions, memorable, worth sharing.
-- **70–79** — Solid. Does its job well, no major weaknesses, but doesn't surprise you.
-- **50–69** — Mediocre. Some value but significant filler, generic execution, or missed potential.
-- **Below 50** — Weak. The reader's time would be better spent elsewhere.
+- **90+** — **Genuinely rare.** Content you'd save, return to, and recommend. Changes how you think.
+- **80–89** — **Very good.** Strong on most dimensions, memorable, worth sharing.
+- **70–79** — **Solid.** Does its job well, no major weaknesses, but doesn't surprise you.
+- **50–69** — **Mediocre.** Some value but significant filler, generic execution, or missed potential.
+- **Below 50** — **Weak.** The reader's time would be better spent elsewhere.
 
 ---
 
@@ -324,7 +324,7 @@ Produce a single markdown document. No warnings, no caveats, no preamble — jus
 
 ---
 
-## Content Score: [n]
+## Content Score: [n] — [band label]
 
 **Weight profile:** [content type]
 **Calculation:** Clarity [s×10]×[w]% + Originality [s×10]×[w]% + Structure [s×10]×[w]% + Credibility [s×10]×[w]% + Writing [s×10]×[w]% + Positioning [s×10]×[w]% + VPM [subscore]×10% = [n]
@@ -371,6 +371,7 @@ Produce a valid JSON object. No markdown wrapping, no explanation — just the J
   },
   "content_score": {
     "score": 0,
+    "band": "Genuinely rare | Very good | Solid | Mediocre | Weak",
     "calculation": "string (the weighted sum, written out)",
     "assessment": "2–3 sentences"
   },
@@ -400,9 +401,11 @@ If the content is the user's own writing ("rate my draft", "is this ready", etc.
 
 **Readiness conditions** — evaluate top-down, first match wins; don't intuit the verdict:
 
-1. **Not yet** — any dimension below 6, a fundamental defect in thesis, structure, or credibility, or a clear voice-consistency failure.
+1. **Not yet** — any dimension below 6, or a clear voice-consistency failure.
 2. **Yes** — no dimension below 7 and no recommendation with an expected score effect of 3 or more points.
 3. **Almost** — everything else: the piece clears the Not-yet bar, but material revisions remain.
+
+A "fundamental defect" is not a separate escape hatch. If the thesis, structure, or credibility is broken badly enough to block publishing, the corresponding dimension score cannot honestly exceed 5 — put the severity in the score, and the verdict follows from rule 1. **Never issue a verdict that contradicts the scores.** A piece scoring 80+ with every dimension at 7 or above and only sub-3-point recommendations is publishable, whatever your editorial instinct says — the arithmetic backs this up: a one-level improvement projects at most +2.5 (one level × 10 × the largest weight, 25%), so single-level polish can never block a "Yes"; only defects worth two or more anchor levels can.
 
 **Voice consistency** — always run this check for the user's own drafts: compare against `tonality.md` when populated, with `tonality-guide.md` as the baseline otherwise (per `CONFIG.md`, the guide applies even when `tonality.md` is unpopulated). Does the piece sound like the user's defined voice, or drift toward generic AI voice or framework-default tone? A clear voice failure means **Not yet** regardless of scores. Report the finding in the readiness block; it never adjusts the quality dimensions.
 

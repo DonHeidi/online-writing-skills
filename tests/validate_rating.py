@@ -56,6 +56,18 @@ DEFECT_LEVELS = {"sentence", "conceptual", "none"}
 GOALS = {"client_attraction", "reach_distribution", "thought_leadership", "conversion"}
 
 
+def score_band(score):
+    if score >= 90:
+        return "Genuinely rare"
+    if score >= 80:
+        return "Very good"
+    if score >= 70:
+        return "Solid"
+    if score >= 50:
+        return "Mediocre"
+    return "Weak"
+
+
 def vpm_subscore(vpm_1dp):
     if vpm_1dp >= 2.0:
         return 95
@@ -180,6 +192,11 @@ def validate(rating, source_text=None):
     reported = rating["content_score"].get("score")
     if not isinstance(reported, (int, float)) or abs(reported - weighted) > 1.0:
         err(f"content_score.score={reported} but weighted sum is {weighted:.1f}")
+    if isinstance(reported, (int, float)):
+        band = rating["content_score"].get("band")
+        if band != score_band(reported):
+            err(f"content_score.band={band!r} but score {reported} is in the "
+                f"{score_band(reported)!r} band")
 
     # --- deduction ledger ---
     ledger = rating["deduction_ledger"]
@@ -240,9 +257,16 @@ def validate(rating, source_text=None):
                     f"formula gives {expected:+.1f}")
             if effect is not None:
                 max_effect = max(max_effect, effect)
-        # Mechanical parts of the readiness tiers (defect/voice judgments can't be checked here)
+        # Mechanical parts of the readiness tiers (the voice judgment itself
+        # can't be checked here, only that a failure was actually reported)
         if any(s < 6 for s in dims.values()) and ready != "not yet":
             err(f"a dimension is below 6 but ready={ready!r} (must be 'not yet')")
+        if ready == "not yet":
+            voice = str(pr.get("voice_consistency") or "").strip().lower()
+            voice_ok = voice in ("", "n/a") or voice.startswith("consistent")
+            if all(s >= 6 for s in dims.values()) and voice_ok:
+                err("ready='not yet' but no dimension is below 6 and no voice "
+                    "failure is reported — the verdict contradicts the scores")
         if ready == "yes":
             if any(s < 7 for s in dims.values()):
                 err("ready='yes' but a dimension is below 7")
